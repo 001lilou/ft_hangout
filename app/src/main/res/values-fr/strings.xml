@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Button -->
+    <string name="action_save">Sauvegarder</string>
+    <string name="cancel">Annuler</string>
+    <string name="details">Details</string>
+    <string name="sms">SMS</string>
+    <string name="phone">Appeler</string>
+
+    <!--  list contacts -->
+    <string name="title_contact_list_fragment">Contacts</string>
+    <string name="avatar">Avatar</string>
+    <string name="fullname">Nom Complet</string>
+
+    <!--  details contact -->
+    <string name="fullname_detail">Nom Complet</string>
+    <string name="lastname_detail">nom</string>
+    <string name="firstname_detail">prénom</string>
+    <string name="mobile_number">numéro de mobile</string>
+    <string name="fixe_number">numero de fixe</string>
+    <string name="mail_address">addresse emqil</string>
+    <string name="postal_address">addresse postale</string>
+    <string name="title_contact_details_fragment">Details Contact</string>
+
+    <!--  add contact -->
+    <string name="create_contact">Créatation contact</string>
+    <string name="contact_add_fragment">Contact</string>
+    <string name="mobile_add">Mobile</string>
+    <string name="lastname_add">Nom</string>
+    <string name="mail_add">Email</string>
+    <string name="firstname_add">Prénom</string>
+    <string name="fixe_add">Fixe</string>
+    <string name="postal_add">Addresse postale</string>
+    <string name="channel_name">string</string>
+    <string name="channel_description">string</string>
+    <string name="permission_not_granted">string</string>
+    <string name="failure_permission">string</string>
+
+
+    <!--   -->
+
+    <string name="app_name">Contacts</string>
+    <string name="action_delete">Supprimer</string>
+    <string name="action_delete_all">Supprimer tout</string>
+    <string name="action_exit">Quitter</string>
+    <string name="action_exit_details">Quitter</string>
+    <string name="action_language">Langage</string>
+
+    <string name="action_theme">Thème</string>
+    <string name="action_update">Mise à jour</string>
+
+    <string name="action_theme_1">Thème bleu</string>
+    <string name="action_theme_2">Thème vitaminé</string>
+    <string name="action_theme_3">Thème Turquoise</string>
+
+</resources>

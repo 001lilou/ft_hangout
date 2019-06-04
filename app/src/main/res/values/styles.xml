@@ -1,0 +1,84 @@
+<resources>
+
+    <!-- Base application theme. -->
+
+    <style name="CustomActionBarTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="navigation_header">@drawable/navigation_header_image_blue</item>
+        <item name="colorBackgroundFloating">@color/colorAccent</item>
+
+    </style>
+
+
+    <style name="ThemeOrange" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="colorPrimary">@color/colorPrimary1</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark1</item>
+        <item name="colorAccent">@color/colorAccent1</item>
+        <item name="navigation_header">@drawable/navigation_header_image_orange</item>
+        <item name="colorBackgroundFloating">@color/colorAccent1</item>
+    </style>
+
+    <style name="ThemeTurquoise" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary3</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark3</item>
+        <item name="colorAccent">@color/colorAccent3</item>
+        <item name="navigation_header">@drawable/navigation_header_image</item>
+        <item name="colorBackgroundFloating">@color/colorAccent3</item>
+    </style>
+
+
+
+    <style name="color_Primary">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="color_Primary1">
+        <item name="android:background">@color/colorPrimary1</item>
+    </style>
+
+    <style name="color_Primary3">
+        <item name="android:background">@color/colorPrimary3</item>
+    </style>
+
+
+    <style name="color_Primary_Dark">
+        <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="color_Primary_Dark1">
+        <item name="android:background">@color/colorPrimaryDark1</item>
+    </style>
+
+    <style name="color_Primary_Dark3">
+        <item name="android:background">@color/colorPrimaryDark3</item>
+    </style>
+
+    <style name="button_Add_Blue">
+        <item name="android:background">@color/colorButtonNormal</item>
+    </style>
+
+    <style name="button_Add_Orange">
+        <item name="android:background">@color/colorButtonNormal1</item>
+    </style>
+
+    <style name="button_Add_Turquoise">
+        <item name="android:background">@color/colorbuttonAdd3</item>
+    </style>
+
+    <style name="button_checksms_Blue">
+        <item name="android:background">@color/colorButtonNormal</item>
+    </style>
+
+    <style name="button_checksms_Orange">
+        <item name="android:background">@color/colorButtonNormal1</item>
+    </style>
+
+    <style name="button_checksms_Turquoise">
+        <item name="android:background">@color/colorbuttonclose3</item>
+    </style>
+
+</resources>
+

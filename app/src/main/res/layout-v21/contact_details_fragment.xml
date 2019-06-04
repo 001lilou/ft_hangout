@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contact_details_fragment"
+    android:text="@string/title_contact_details_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ft_hangout.FtHangoutFragment.ContactDetailsFragment">
+
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/header_cover_image"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:src="?attr/navigation_header" />
+
+    <com.example.ft_hangout.Utils.CircularImageView
+        android:id="@+id/user_profile_photo"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_below="@+id/header_cover_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-60dp"
+        android:background="@drawable/profile_circular_border_imageview"
+        android:elevation="5dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="@null"
+        android:src="@drawable/avatar101"/>
+
+    <RelativeLayout
+        android:id="@+id/profile_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header_cover_image"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:paddingBottom="24dp">
+
+        <TextView
+            android:id="@+id/user_profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="76dp"
+            android:text="@string/fullname_detail"
+            android:textColor="#fff"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_layout"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <TextView
+
+            android:id="@+id/lastname_Detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="#fff"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:focusable="true"
+            android:padding="20dp"
+            android:text="@string/lastname_detail" />
+
+        <TextView
+            android:id="@+id/firstname_Detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:background="#fff"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:focusable="true"
+            android:padding="20dp"
+            android:text="@string/firstname_detail" />
+
+        <TextView
+            android:id="@+id/mobile_Detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="#fff"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:focusable="true"
+            android:padding="20dp"
+            android:text="@string/mobile_number" />
+
+        <TextView
+            android:id="@+id/fixe_Detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:background="#fff"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:focusable="true"
+            android:padding="20dp"
+            android:text="@string/fixe_number" />
+
+        <TextView
+            android:id="@+id/mail_Detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="#fff"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:focusable="true"
+            android:padding="20dp"
+            android:text="@string/mail_address" />
+
+        <TextView
+            android:id="@+id/postal_Detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:background="#fff"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:focusable="true"
+            android:padding="20dp"
+            android:text="@string/postal_address" />
+    </LinearLayout>
+</RelativeLayout>
+</ScrollView>

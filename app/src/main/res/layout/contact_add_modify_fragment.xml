@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/contact_add_fragment"
+    android:text="@string/title_contact_details_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ft_hangout.FtHangoutFragment.ContactAddModifyFragment">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <!-- TODO: Ajouter bouton enregistrer -->
+        <!-- TODO: Ajouter bouton annuler -->
+        <!-- TODO: Ajouter avatar sans photo -->
+
+
+        <ImageView
+            android:id="@+id/header_add_cover_image"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            android:src="?attr/navigation_header" />
+
+        <com.example.ft_hangout.Utils.CircularImageView
+            android:id="@+id/image_Button_add"
+            android:clickable="true"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_below="@+id/header_add_cover_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-60dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/profile_circular_border_imageview"
+            android:contentDescription="@null"
+            android:elevation="5dp"
+            android:src="@drawable/ic_person_black_700dp"
+            tools:targetApi="lollipop"
+            android:focusable="true" />
+
+        <RelativeLayout
+            android:id="@+id/profile_add_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header_add_cover_image"
+            android:background="?attr/colorPrimary"
+            android:clickable="true"
+            android:paddingBottom="24dp"
+            tools:targetApi="lollipop"
+            android:focusable="true">
+
+            <ImageButton
+                android:id="@+id/save"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="40dp"
+                android:contentDescription="@null"
+                android:onClick="onClick"
+                android:src="@drawable/ic_save"
+                app:backgroundTint="?attr/colorPrimary" />
+
+            <ImageButton
+                android:id="@+id/cancel"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/save"
+                android:layout_marginStart="300dp"
+                android:layout_marginTop="-2dp"
+                android:contentDescription="@string/cancel"
+                android:onClick="onClick"
+                android:src="@drawable/ic_cancel"
+                app:backgroundTint="?attr/colorPrimary" />
+
+
+            <TextView
+                android:id="@+id/create_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="70dp"
+                android:text="@string/create_contact"
+                android:textColor="#fff"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_add_layout"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/lastname_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:autofillHints="@string/lastname_add"
+                android:background="#fff"
+                android:hint="@string/lastname_add"
+                android:inputType="textPersonName"
+                android:padding="20dp"
+                android:textSize="22sp"
+                tools:targetApi="o" />
+
+            <EditText
+                android:id="@+id/firstmame_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:autofillHints="@string/firstname_add"
+                android:background="#fff"
+                android:hint="@string/firstname_add"
+                android:inputType="textPersonName"
+                android:padding="20dp"
+                android:textSize="22sp"
+                tools:targetApi="o" />
+
+
+            <EditText
+                android:id="@+id/mobile_add"
+                android:digits="0123456789+"
+                android:lines="1"
+                android:maxLength="14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:autofillHints="@string/mobile_add"
+                android:background="#fff"
+                android:hint="@string/mobile_add"
+                android:inputType="phone"
+                android:padding="20dp"
+                android:textSize="22sp"
+                tools:targetApi="o" />
+
+            <EditText
+                android:id="@+id/fixe_add"
+                android:digits="0123456789+"
+                android:lines="1"
+                android:maxLength="14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:autofillHints="@string/fixe_add"
+                android:background="#fff"
+                android:hint="@string/fixe_add"
+                android:inputType="phone"
+                android:padding="20dp"
+                android:textSize="22sp"
+                tools:targetApi="o" />
+
+            <EditText
+                android:id="@+id/mail_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:autofillHints="@string/mail_add"
+                android:background="#fff"
+                android:hint="@string/mail_add"
+                android:inputType="textEmailAddress"
+                android:padding="20dp"
+                android:textSize="22sp"
+                tools:targetApi="o" />
+
+
+            <EditText
+                android:id="@+id/postal_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:autofillHints="@string/postal_add"
+                android:background="#fff"
+                android:hint="@string/postal_add"
+                android:inputType="textPostalAddress"
+                android:padding="20sp"
+                android:textSize="22sp"
+                tools:targetApi="o" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

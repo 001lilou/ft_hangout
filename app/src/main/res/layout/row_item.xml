@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    android:orientation="horizontal"
+    android:baselineAligned="false">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearlayout1"
+        android:layout_marginTop="2dp">
+
+        <com.example.ft_hangout.Utils.CircularImageView
+            android:id="@+id/avatar"
+            android:layout_width="60dp"
+            android:layout_height="49dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/avatar"
+            android:ellipsize="end"
+            android:foregroundGravity="center"
+            app:layout_column="0"
+            tools:srcCompat="@tools:sample/avatars[1]" />
+
+        <TextView
+            android:id="@+id/textViewFullname"
+            android:layout_width="250dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="1dp"
+            android:layout_weight="1"
+            android:foregroundGravity="center_vertical|center|center_horizontal"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:maxLines="1"
+            android:text="@string/fullname_detail"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textSize="23sp"
+            app:layout_column="1"
+            tools:ignore="RtlCompat" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearlayout1"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="2dp">
+
+
+        <ImageButton
+            android:id="@+id/details"
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:contentDescription="@string/details"
+            android:focusable="true"
+            android:onClick="onClick"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_details"
+            app:layout_column="0"
+            app:backgroundTint="?attr/colorPrimary"
+            app:background="?attr/buttonCheckSms"/>
+
+        <ImageButton
+            android:id="@+id/phone"
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:contentDescription="@string/phone"
+            android:focusable="true"
+            android:onClick="onClick"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_call_black_24dp"
+            app:layout_column="0"
+            style="buttonCheckSms"
+            app:backgroundTint="?attr/colorPrimary" />
+
+        <ImageButton
+            android:id="@+id/sms"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:contentDescription="@string/sms"
+            android:focusable="true"
+            android:onClick="onClick"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_sms"
+            app:layout_column="1"
+            app:background="?attr/buttonCheckSms"
+            app:backgroundTint="?attr/colorPrimary" />
+    </LinearLayout>
+
+</RelativeLayout>
+
+
+
+

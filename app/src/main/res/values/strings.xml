@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Contacts</string>
+
+    <!--  Menu -->
+
+
+    <string name="action_theme">Theme</string>
+    <string name="action_language">Language</string>
+    <string name="action_delete_all">Delete All</string>
+    <string name="action_exit">Exit</string>
+
+
+    <!-- Menu details -->
+    <string name="action_update">update</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_exit_details">Exit</string>
+
+    <!-- Button -->
+
+    <string name="action_save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="details">Details</string>
+    <string name="sms">SMS</string>
+    <string name="phone">Call</string>
+
+
+    <!--  list contacts -->
+    <string name="title_contact_list_fragment">Contacts</string>
+    <string name="avatar">Avatar</string>
+    <string name="fullname">Fullname</string>
+
+    <!--  details contact -->
+    <string name="fullname_detail">fullname</string>
+    <string name="lastname_detail">lastname</string>
+    <string name="firstname_detail">firstname</string>
+    <string name="mobile_number">mobile number</string>
+    <string name="fixe_number">fixe number</string>
+    <string name="mail_address">mail address</string>
+    <string name="postal_address">postal address</string>
+    <string name="title_contact_details_fragment">Contact Details</string>
+
+    <!--  add contact -->
+    <string name="create_contact">Create contact</string>
+    <string name="contact_add_fragment">Contact</string>
+    <string name="mobile_add">Mobile</string>
+    <string name="lastname_add">Lastname</string>
+    <string name="mail_add">Mail</string>
+    <string name="firstname_add">Firstname</string>
+    <string name="fixe_add">Fixe</string>
+    <string name="postal_add">Postal address</string>
+    <string name="channel_name">string</string>
+    <string name="channel_description">string</string>
+    <string name="permission_not_granted">string</string>
+    <string name="failure_permission">string</string>
+
+    <string name="action_theme_1">Thème bleu</string>
+    <string name="action_theme_2">Thème vitaminé</string>
+    <string name="action_theme_3">Thème Turquoise</string>
+
+</resources>
