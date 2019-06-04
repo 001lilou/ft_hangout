@@ -28,6 +28,11 @@ import com.example.ft_hangout.ViewModel.ContactsViewModel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
+import android.widget.Button;
+
+
 import static com.example.ft_hangout.R.id.fragment_container;
 
 
@@ -44,6 +49,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 1;
+    private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 1;
+
+    private TelephonyManager mTelephonyManager;
+    private MyPhoneCallListener mListener;
 
 
     @Override
@@ -63,6 +72,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         sharedPreferences = getBaseContext().getSharedPreferences(DATETIME, MODE_PRIVATE);
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, listFragment, null).commit();
+
+
+        // Create a telephony manager.
+        mTelephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        // Check to see if Telephony is enabled.
+        if (isTelephonyEnabled()) {
+            Log.d(TAG, getString(R.string.telephony_enabled));
+            // Check for phone permission.
+            checkForPhonePermission();
+            // Register the PhoneStateListener to monitor phone activity.
+            mListener = new MyPhoneCallListener();
+            mTelephonyManager.listen(mListener, PhoneStateListener.LISTEN_CALL_STATE);
+        } else {
+            Toast.makeText(this,
+                    R.string.telephony_not_enabled, Toast.LENGTH_LONG).show();
+            Log.d(TAG, getString(R.string.telephony_not_enabled));
+            // Disable the call button.
+            //disableCallButton();
+        }
     }
 
     /**
@@ -81,6 +109,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     MY_PERMISSIONS_REQUEST_SEND_SMS);
         }
     }
+
+    /**
+     * Checks whether the app has phone-calling permission.
+     */
+    private void checkForPhonePermission() {
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            Log.d(TAG, getString(R.string.permission_not_granted));
+            // Permission not yet granted. Use requestPermissions().
+            // MY_PERMISSIONS_REQUEST_CALL_PHONE is an
+            // app-defined int constant. The callback method gets the
+            // result of the request.
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CALL_PHONE},
+                    MY_PERMISSIONS_REQUEST_CALL_PHONE);
+        } else {
+            // Permission already granted. Enable the call button.
+            enableCallButton();
+        }
+    }
+
+
+    /**
+     * Checks whether Telephony is enabled.
+     *
+     * @return true if enabled, otherwise false
+     */
+    private boolean isTelephonyEnabled() {
+        if (mTelephonyManager != null) {
+            if (mTelephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /*private void disableCallButton() {
+        Toast.makeText(this, R.string.phone_disabled, Toast.LENGTH_LONG).show();
+        ImageButton callButton = (ImageButton) findViewById(R.id.phone);
+        callButton.setVisibility(View.INVISIBLE);
+        if (isTelephonyEnabled()) {
+            Button retryButton = (Button) findViewById(R.id.phone);
+            retryButton.setVisibility(View.VISIBLE);
+        }
+    }*/
+
 
     @Override
     public void startActivityFromFragment(Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
@@ -171,6 +245,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+
+    /**
+     * Makes the call button (phone_icon) visible so that it can be used.
+     */
+    private void enableCallButton() {
+        ImageButton callButton = (ImageButton) findViewById(R.id.phone);
+        callButton.setVisibility(View.VISIBLE);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -181,6 +264,63 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
+
+    /**
+     * Monitors and logs phone call activities, and shows the phone state
+     * in a toast message.
+     */
+    private class MyPhoneCallListener extends PhoneStateListener {
+        private boolean returningFromOffHook = false;
+
+        @Override
+        public void onCallStateChanged(int state, String incomingNumber) {
+            // Define a string for the message to use in a toast.
+            String message = getString(R.string.phone_status);
+            switch (state) {
+                case TelephonyManager.CALL_STATE_RINGING:
+                    // Incoming call is ringing (not used for outgoing call).
+                    message = message +
+                            getString(R.string.ringing) + incomingNumber;
+                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                    Log.i(TAG, message);
+                    break;
+                case TelephonyManager.CALL_STATE_OFFHOOK:
+                    // Phone call is active -- off the hook.
+                    message = message + getString(R.string.offhook);
+                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                    Log.i(TAG, message);
+                    returningFromOffHook = true;
+                    break;
+                case TelephonyManager.CALL_STATE_IDLE:
+                    // Phone is idle before and after phone call.
+                    // If running on version older than 19 (KitKat),
+                    // restart activity when phone call ends.
+                    message = message + getString(R.string.idle);
+                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                    Log.i(TAG, message);
+                    /*if (returningFromOffHook) {
+                        // No need to do anything if >= version KitKat.
+                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+                            Log.i(TAG, getString(R.string.restarting_app));
+                            // Restart the app.
+                            Intent intent = getPackageManager()
+                                    .getLaunchIntentForPackage(getPackageName());
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
+                    }*/
+                    break;
+                default:
+                    message = message + "Phone off";
+                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                    Log.i(TAG, message);
+                    break;
+            }
+        }
+    }
+
+
 
 
     @Override

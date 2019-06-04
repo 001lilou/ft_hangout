@@ -34,8 +34,6 @@
     <string name="postal_add">Addresse postale</string>
     <string name="channel_name">string</string>
     <string name="channel_description">string</string>
-    <string name="permission_not_granted">string</string>
-    <string name="failure_permission">string</string>
 
 
     <!--   -->
