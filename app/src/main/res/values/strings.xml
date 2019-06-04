@@ -50,11 +50,27 @@
     <string name="postal_add">Postal address</string>
     <string name="channel_name">string</string>
     <string name="channel_description">string</string>
-    <string name="permission_not_granted">string</string>
-    <string name="failure_permission">string</string>
+    <string name="permission_not_granted" translatable="false">permission_not_granted</string>
+    <string name="failure_permission" translatable="false">failure_permission</string>
 
     <string name="action_theme_1">Thème bleu</string>
     <string name="action_theme_2">Thème vitaminé</string>
     <string name="action_theme_3">Thème Turquoise</string>
+
+
+    <string name="show" translatable="false">Show</string>
+    <string name="enter_phone" translatable="false">Enter a phone number</string>
+    <string name="phone_status" translatable="false">"Phone Status: "</string>
+    <string name="ringing" translatable="false">"RINGING, number: "</string>
+    <string name="offhook" translatable="false">OFFHOOK</string>
+    <string name="idle" translatable="false">IDLE</string>
+    <string name="restarting_app" translatable="false">Restarting app</string>
+    <string name="dial_number" translatable="false">"Phone Status: DIALING: "</string>
+    <string name="telephony_enabled" translatable="false">Telephony is enabled</string>
+    <string name="telephony_not_enabled" translatable="false">"TELEPHONY NOT ENABLED! "</string>
+    <string name="call" translatable="false">Call</string>
+    <string name="make_a_call" translatable="false">Make a call</string>
+    <string name="phone_disabled" translatable="false">Phone calling disabled.</string>
+    <string name="retry" translatable="false">Retry</string>
 
 </resources>
