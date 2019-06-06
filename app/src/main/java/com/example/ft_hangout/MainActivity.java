@@ -32,6 +32,10 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.widget.Button;
 
+import android.net.Uri;
+import android.os.Build;
+import android.widget.EditText;
+
 
 import static com.example.ft_hangout.R.id.fragment_container;
 
@@ -145,16 +149,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return false;
     }
 
-    /*private void disableCallButton() {
-        Toast.makeText(this, R.string.phone_disabled, Toast.LENGTH_LONG).show();
-        ImageButton callButton = (ImageButton) findViewById(R.id.phone);
-        callButton.setVisibility(View.INVISIBLE);
-        if (isTelephonyEnabled()) {
-            Button retryButton = (Button) findViewById(R.id.phone);
-            retryButton.setVisibility(View.VISIBLE);
+    /*public void callNumber(View view) {
+        // Create the intent.
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        // Set the data for the intent as the phone number.
+        callIntent.setData(Uri.parse(phoneNumber));
+        // If package resolves to an app, check for phone permission,
+        // and send intent.
+        if (callIntent.resolveActivity(getPackageManager()) != null) {
+            checkForPhonePermission();
+            startActivity(callIntent);
+        } else {
+            Log.e(TAG, "Can't resolve app for ACTION_CALL Intent.");
         }
     }*/
-
 
     @Override
     public void startActivityFromFragment(Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
@@ -191,9 +199,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                 //Toast.makeText(this, "Bouton SMS clické !", Toast.LENGTH_LONG).show();
-         /*   case R.id.phone:
+                break;
+            case R.id.phone:
                 _contact = _contactsViewModel.getSelectedContact().getValue();
-                Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+                /*Intent dialIntent = new Intent(Intent.ACTION_DIAL);
                 dialIntent.setType("vnd.android-dir/mms-sms");
                 if( _contact.getNumobile() != null)
                 {
@@ -205,6 +214,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 dialIntent.putExtra("sms_body","Body of Message");
                 startActivity(dialIntent);*/
+
+
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                // Set the data for the intent as the phone number.
+                callIntent.setData(Uri.parse(_contact.getNumobile()));
+                // If package resolves to an app, check for phone permission,
+                // and send intent.
+                if (callIntent.resolveActivity(getPackageManager()) != null) {
+                    checkForPhonePermission();
+                    startActivity(callIntent);
+                } else {
+                    Log.e(TAG, "Can't resolve app for ACTION_CALL Intent.");
+                }
                 break;
             default:
                 return;
