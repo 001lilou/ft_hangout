@@ -1,9 +1,8 @@
-package com.example.ft_hangout.FtHangoutFragment;
+package com.example.ft_hangout.fthangoutfragment;
 
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -22,37 +21,29 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.view.ViewGroup;;
 
 
-import com.example.ft_hangout.Entity.Contacts;
-import com.example.ft_hangout.FtHangoutAdapter.ContactsAdapter;
-import com.example.ft_hangout.FtHangoutAdapter.CustomLayoutManager;
+import com.example.ft_hangout.entity.Contacts;
+import com.example.ft_hangout.fthangoutadapter.ContactsAdapter;
+import com.example.ft_hangout.fthangoutadapter.CustomLayoutManager;
 import com.example.ft_hangout.R;;
-import com.example.ft_hangout.Utils.ThemeUtil;
-import com.example.ft_hangout.ViewModel.ContactsViewModel;
+import com.example.ft_hangout.utils.ThemeUtil;
+import com.example.ft_hangout.viewmodel.ContactsViewModel;
 import com.example.ft_hangout.interfaces.OnContactListener;
 
 
 import java.util.List;
 
 
-
-public class ContactsListFragment extends Fragment{
+public class ContactsListFragment extends Fragment {
 
     private ContactsViewModel contactsViewModel;
     private RecyclerView recyclerView;
     private FragmentTransaction fragmentTransaction;
     private ContactsAdapter adapter;
-    private Contacts _contact;
     private List<Contacts> _contacts;
-    private ImageButton imgButton;
     private FloatingActionButton addContactButton;
-    private SharedPreferences pref;
-    private SharedPreferences.Editor editor;
-    private int check;
-    private int newcheck;
 
 
     public ContactsListFragment() {
@@ -75,8 +66,7 @@ public class ContactsListFragment extends Fragment{
                 fragmentTransaction.commit();
             }
         });
-        if (adapter != null && _contacts != null)
-        {
+        if (adapter != null && _contacts != null) {
             adapter.setContacts(_contacts);
         }
         return view;
@@ -158,24 +148,10 @@ public class ContactsListFragment extends Fragment{
     }
 
 
-    private void setTheme(int textAppearance_appCompat) {
-    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-   /*     Activity activity = (Activity) context;
-        {
-
-        }
-        if (context instanceof OnItemClickListener)
-            try {
-                OnItemClickListener onItemClickListener = (OnItemClickListener) activity;
-            } catch (ClassCastException e) {
-                throw new RuntimeException((context.toString() + " must implement list.."));
-            }*/
     }
-
-
 
     @Override
     public void onResume() {

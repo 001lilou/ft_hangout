@@ -1,4 +1,4 @@
-package com.example.ft_hangout.Utils;
+package com.example.ft_hangout.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -33,7 +33,7 @@ import com.example.ft_hangout.R;
 
 
 @SuppressWarnings("UnusedDeclaration")
-public class CircularImageView extends android.support.v7.widget.AppCompatImageView{
+public class CircularImageView extends android.support.v7.widget.AppCompatImageView {
 
 
     private static final ImageView.ScaleType SCALE_TYPE = ImageView.ScaleType.CENTER_CROP;
@@ -73,30 +73,30 @@ public class CircularImageView extends android.support.v7.widget.AppCompatImageV
     private boolean _borderOverlay;
     private boolean _disableCircularTransformation;
 
-        public CircularImageView(Context context) {
-            super(context);
+    public CircularImageView(Context context) {
+        super(context);
 
-            init();
-        }
+        init();
+    }
 
-        public CircularImageView(Context context, AttributeSet attrs) {
-            this(context, attrs, 0);
-        }
+    public CircularImageView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
 
-        public CircularImageView(Context context, AttributeSet attrs, int defStyle) {
-            super(context, attrs, defStyle);
+    public CircularImageView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
 
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircleImageView, defStyle, 0);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircleImageView, defStyle, 0);
 
-            _borderWidth = a.getDimensionPixelSize(R.styleable.CircleImageView_civ_border_width, DEFAULT_BORDER_WIDTH);
-            _borderColor = a.getColor(R.styleable.CircleImageView_civ_border_color, DEFAULT_BORDER_COLOR);
-            _borderOverlay = a.getBoolean(R.styleable.CircleImageView_civ_border_overlay, DEFAULT_BORDER_OVERLAY);
-            _circleBackgroundColor = a.getColor(R.styleable.CircleImageView_civ_circle_background_color, DEFAULT_CIRCLE_BACKGROUND_COLOR);
+        _borderWidth = a.getDimensionPixelSize(R.styleable.CircleImageView_civ_border_width, DEFAULT_BORDER_WIDTH);
+        _borderColor = a.getColor(R.styleable.CircleImageView_civ_border_color, DEFAULT_BORDER_COLOR);
+        _borderOverlay = a.getBoolean(R.styleable.CircleImageView_civ_border_overlay, DEFAULT_BORDER_OVERLAY);
+        _circleBackgroundColor = a.getColor(R.styleable.CircleImageView_civ_circle_background_color, DEFAULT_CIRCLE_BACKGROUND_COLOR);
 
-            a.recycle();
+        a.recycle();
 
-            init();
-        }
+        init();
+    }
 
     private void init() {
         super.setScaleType(SCALE_TYPE);
@@ -368,7 +368,7 @@ public class CircularImageView extends android.support.v7.widget.AppCompatImageV
     }
 
     private RectF calculateBounds() {
-        int availableWidth  = getWidth() - getPaddingLeft() - getPaddingRight();
+        int availableWidth = getWidth() - getPaddingLeft() - getPaddingRight();
         int availableHeight = getHeight() - getPaddingTop() - getPaddingBottom();
 
         int sideLength = Math.min(availableWidth, availableHeight);
@@ -422,5 +422,5 @@ public class CircularImageView extends android.support.v7.widget.AppCompatImageV
 
     }
 
-    }
+}
 

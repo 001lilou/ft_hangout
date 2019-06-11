@@ -1,4 +1,4 @@
-package com.example.ft_hangout.FtHangoutAdapter;
+package com.example.ft_hangout.fthangoutadapter;
 
 import android.content.Context;
 import android.graphics.PointF;
@@ -8,10 +8,6 @@ import android.util.DisplayMetrics;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSmoothScroller;
 import android.support.v7.widget.RecyclerView;
-
-
-
-import com.example.ft_hangout.Entity.Contacts;
 
 public class CustomLayoutManager extends LinearLayoutManager {
     private float MILLISECONDS_PER_INCH = 1100f;

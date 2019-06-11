@@ -1,6 +1,5 @@
-package com.example.ft_hangout.Entity;
+package com.example.ft_hangout.entity;
 
-import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.Nullable;
@@ -54,11 +53,11 @@ public class Contacts {
         return _id;
     }
 
-    public Boolean checkAvatar(){
+    public Boolean checkAvatar() {
         return _checkAvatar;
     }
 
-    public void setCheckAvatar(Boolean _checkAvatar){
+    public void setCheckAvatar(Boolean _checkAvatar) {
         this._checkAvatar = _checkAvatar;
     }
 

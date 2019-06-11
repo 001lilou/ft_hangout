@@ -6,7 +6,7 @@
     android:text="@string/title_contact_details_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ft_hangout.FtHangoutFragment.ContactAddModifyFragment">
+    tools:context="com.example.ft_hangout.fthangoutfragment.ContactAddModifyFragment">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -25,7 +25,7 @@
             android:scaleType="centerCrop"
             android:src="?attr/navigation_header" />
 
-        <com.example.ft_hangout.Utils.CircularImageView
+        <com.example.ft_hangout.utils.CircularImageView
             android:id="@+id/image_Button_add"
             android:clickable="true"
             android:layout_width="120dp"

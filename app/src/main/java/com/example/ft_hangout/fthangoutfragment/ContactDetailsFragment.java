@@ -1,4 +1,4 @@
-package com.example.ft_hangout.FtHangoutFragment;
+package com.example.ft_hangout.fthangoutfragment;
 
 
 import android.graphics.drawable.Drawable;
@@ -18,12 +18,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.arch.lifecycle.ViewModelProviders;
 
-import com.example.ft_hangout.Utils.CircularImageView;
-import com.example.ft_hangout.Entity.Contacts;
+import com.example.ft_hangout.utils.CircularImageView;
+import com.example.ft_hangout.entity.Contacts;
 import com.example.ft_hangout.R;
-import com.example.ft_hangout.ViewModel.ContactsViewModel;
+import com.example.ft_hangout.viewmodel.ContactsViewModel;
 
-import static com.example.ft_hangout.Utils.Base64Contact.decodeBase64;
+import static com.example.ft_hangout.utils.Base64Contact.decodeBase64;
 
 
 public class ContactDetailsFragment extends Fragment {

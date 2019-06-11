@@ -26,13 +26,13 @@
             </intent-filter>
         </activity>
         <receiver
-            android:name="com.example.ft_hangout.FtHangoutReceiver.ContactReceiver"
+            android:name="com.example.ft_hangout.fthangoutreceiver.ContactReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BROADCAST_SMS">
             <intent-filter android:priority="2147483647">
-                <category android:name="android.intent.category.DEFAULT"/>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
         <meta-data

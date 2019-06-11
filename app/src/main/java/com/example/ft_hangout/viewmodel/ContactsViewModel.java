@@ -1,11 +1,12 @@
-package com.example.ft_hangout.ViewModel;
+package com.example.ft_hangout.viewmodel;
 
 import android.app.Application;
 
-import com.example.ft_hangout.Entity.Contacts;
-import com.example.ft_hangout.Repository.ContactsRepository;
+import com.example.ft_hangout.entity.Contacts;
+import com.example.ft_hangout.repository.ContactsRepository;
 
 import java.util.List;
+
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
@@ -41,16 +42,6 @@ public class ContactsViewModel extends AndroidViewModel {
         repository.deleteAllContacts();
     }
 
-   /* public Contacts getContactDetails(Contacts contact){
-        return repository.selectedContact(contact);
-    }*/
-
-    /*public String getFullName(Contacts contacts){
-        getContactDetails(contacts);
-
-        return (contacts.getLastname().toString() + " " + contacts.getFirstname().toString());
-    }*/
-
     public MutableLiveData<Contacts> getSelectedContact() {
         return selectedCont;
     }
@@ -59,8 +50,3 @@ public class ContactsViewModel extends AndroidViewModel {
         return allContacts;
     }
 }
-
-
-/* public Contacts getContact(List<Contacts> item) {
-        return  repository.selectedContact(item);
-    }*/

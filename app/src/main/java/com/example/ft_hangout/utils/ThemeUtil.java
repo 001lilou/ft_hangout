@@ -1,4 +1,4 @@
-package com.example.ft_hangout.Utils;
+package com.example.ft_hangout.utils;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,23 +12,23 @@ public class ThemeUtil {
     public final static int THEME_CUSTOM_ACTION_BAR_THEME_ORANGE = 1;
     public final static int THEME_CUSTOM_ACTION_BAR_THEME_TURQUOISE = 3;
 
-    public static void  changeToTheme(Activity activity, int theme){
+    public static void changeToTheme(Activity activity, int theme) {
         sTheme = theme;
         activity.finish();
         activity.startActivity(new Intent(activity, activity.getClass()));
-        activity.overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+        activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
-    public static void  onActivityCreateSetTheme(Activity activity) {
+    public static void onActivityCreateSetTheme(Activity activity) {
         switch (sTheme) {
             default:
-            case    THEME_CUSTOM_ACTION_BAR_THEME_BLUE:
+            case THEME_CUSTOM_ACTION_BAR_THEME_BLUE:
                 activity.setTheme(R.style.CustomActionBarTheme);
                 break;
-            case    THEME_CUSTOM_ACTION_BAR_THEME_ORANGE:
+            case THEME_CUSTOM_ACTION_BAR_THEME_ORANGE:
                 activity.setTheme(R.style.ThemeOrange);
                 break;
-            case    THEME_CUSTOM_ACTION_BAR_THEME_TURQUOISE:
+            case THEME_CUSTOM_ACTION_BAR_THEME_TURQUOISE:
                 activity.setTheme(R.style.ThemeTurquoise);
                 break;
 

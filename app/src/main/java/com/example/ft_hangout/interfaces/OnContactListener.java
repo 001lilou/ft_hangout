@@ -1,6 +1,6 @@
 package com.example.ft_hangout.interfaces;
 
-import com.example.ft_hangout.Entity.Contacts;
+import com.example.ft_hangout.entity.Contacts;
 
 public interface OnContactListener {
 

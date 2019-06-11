@@ -19,11 +19,11 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 
-import com.example.ft_hangout.Entity.Contacts;
-import com.example.ft_hangout.FtHangoutFragment.ContactDetailsFragment;
-import com.example.ft_hangout.FtHangoutFragment.ContactsListFragment;
-import com.example.ft_hangout.Utils.ThemeUtil;
-import com.example.ft_hangout.ViewModel.ContactsViewModel;
+import com.example.ft_hangout.entity.Contacts;
+import com.example.ft_hangout.fthangoutfragment.ContactDetailsFragment;
+import com.example.ft_hangout.fthangoutfragment.ContactsListFragment;
+import com.example.ft_hangout.utils.ThemeUtil;
+import com.example.ft_hangout.viewmodel.ContactsViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -99,20 +99,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.sms:
                 _contact = _contactsViewModel.getSelectedContact().getValue();
 
-               Intent smsIntent = new Intent(Intent.ACTION_VIEW);
-               smsIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                Intent smsIntent = new Intent(Intent.ACTION_VIEW);
+                smsIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 smsIntent.setType("vnd.android-dir/mms-sms");
-                if( _contact.getNumobile() != null)
-                {
-                    smsIntent.putExtra("address",_contact.getNumobile());
-                }
-                else
-                {
-                    smsIntent.putExtra("address","");
-                   // sendSMS("","");
+                if (_contact.getNumobile() != null) {
+                    smsIntent.putExtra("address", _contact.getNumobile());
+                } else {
+                    smsIntent.putExtra("address", "");
+                    // sendSMS("","");
 
                 }
-                smsIntent.putExtra("sms_body","");
+                smsIntent.putExtra("sms_body", "");
                 startActivity(smsIntent);
 
 
@@ -136,7 +133,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return;
         }
     }
-    public static String getCurrentTimeStamp(){
+
+    public static String getCurrentTimeStamp() {
         try {
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

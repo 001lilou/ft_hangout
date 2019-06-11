@@ -18,7 +18,7 @@
         android:id="@+id/linearlayout1"
         android:layout_marginTop="2dp">
 
-        <com.example.ft_hangout.Utils.CircularImageView
+        <com.example.ft_hangout.utils.CircularImageView
             android:id="@+id/avatar"
             android:layout_width="60dp"
             android:layout_height="49dp"

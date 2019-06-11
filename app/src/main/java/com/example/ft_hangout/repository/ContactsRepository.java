@@ -1,19 +1,19 @@
-package com.example.ft_hangout.Repository;
+package com.example.ft_hangout.repository;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
 
-import com.example.ft_hangout.Dao.ContactsDao;
-import com.example.ft_hangout.DataBase.ContactsDatabase;
-import com.example.ft_hangout.Entity.Contacts;
+import com.example.ft_hangout.dao.ContactsDao;
+import com.example.ft_hangout.database.ContactsDatabase;
+import com.example.ft_hangout.entity.Contacts;
 
 import java.util.List;
 
 public class ContactsRepository {
     private ContactsDao contactsDao;
-    private  LiveData<List<Contacts>> allContacts;
+    private LiveData<List<Contacts>> allContacts;
     private Contacts _contact;
     private int _id;
 

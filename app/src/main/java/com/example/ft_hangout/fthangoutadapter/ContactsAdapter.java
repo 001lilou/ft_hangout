@@ -1,4 +1,4 @@
-package com.example.ft_hangout.FtHangoutAdapter;
+package com.example.ft_hangout.fthangoutadapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-import com.example.ft_hangout.Entity.Contacts;
+import com.example.ft_hangout.entity.Contacts;
 import com.example.ft_hangout.R;
 import com.example.ft_hangout.interfaces.OnContactListener;
 
@@ -22,7 +22,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
-import static com.example.ft_hangout.Utils.Base64Contact.decodeBase64;
+import static com.example.ft_hangout.utils.Base64Contact.decodeBase64;
 
 
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ContactsHolder> {
@@ -31,7 +31,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     public Context _context;
     public OnContactListener listener;
     public int lastIndexContactSelected = -1;
-    public int indexContactSelected = -2;
+    public int indexContactSelected = -1;
 
     public ContactsAdapter(Context context, List<Contacts> contactsList, OnContactListener listener) {
         this._context = context;
@@ -103,6 +103,42 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         @Override
         public void onClick(View view) {
             indexContactSelected = getAdapterPosition();
+            Toast.makeText(_context, "" + indexContactSelected, Toast.LENGTH_SHORT).show();
+            if (lastIndexContactSelected == indexContactSelected) {
+
+                if (_contact.get(lastIndexContactSelected).isExpanded() == false) {
+                    _contact.get(lastIndexContactSelected).setExpanded(false);
+                    _contact.get(indexContactSelected).setExpanded(false);
+                    Toast.makeText(_context, "ouverture", Toast.LENGTH_SHORT).show();
+                    notifyItemChanged(getAdapterPosition());
+
+                } else {
+                    Toast.makeText(_context, "fermeture index" + indexContactSelected, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(_context, "fermeture last" + lastIndexContactSelected, Toast.LENGTH_SHORT).show();
+
+                }
+            } else if (lastIndexContactSelected != -1) {
+                _contact.get(lastIndexContactSelected).setExpanded(false);
+                //notifyDataSetChanged();
+            }
+            /**/
+            listener.onContactSelected(_contact.get(getAdapterPosition()));
+            notifyItemChanged(lastIndexContactSelected);
+            lastIndexContactSelected = getAdapterPosition();
+            indexContactSelected = -1;
+            notifyItemChanged(getAdapterPosition());
+            // notifyItemChanged(lastIndexContactSelected);
+        }
+
+    }
+
+}
+
+
+/*
+  @Override
+        public void onClick(View view) {
+            indexContactSelected = getAdapterPosition();
             if (lastIndexContactSelected == indexContactSelected) {
 
                 if (_contact.get(lastIndexContactSelected).isExpanded() == true) {
@@ -115,17 +151,14 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
                 _contact.get(lastIndexContactSelected).setExpanded(false);
                 //notifyDataSetChanged();
             }
-            /**/
+
             listener.onContactSelected(_contact.get(getAdapterPosition()));
-            notifyItemChanged(lastIndexContactSelected);
-            lastIndexContactSelected = getAdapterPosition();
-            notifyItemChanged(getAdapterPosition());
-            // notifyItemChanged(lastIndexContactSelected);
-        }
-
-    }
-
-}
+                    notifyItemChanged(lastIndexContactSelected);
+                    lastIndexContactSelected = getAdapterPosition();
+                    notifyItemChanged(getAdapterPosition());
+                    // notifyItemChanged(lastIndexContactSelected);
+                    }
+ */
 
 
 

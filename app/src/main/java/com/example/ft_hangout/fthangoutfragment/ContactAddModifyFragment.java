@@ -1,11 +1,10 @@
-package com.example.ft_hangout.FtHangoutFragment;
+package com.example.ft_hangout.fthangoutfragment;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -20,18 +19,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.Manifest;
 
-import com.example.ft_hangout.Utils.CircularImageView;
-import com.example.ft_hangout.Entity.Contacts;
+import com.example.ft_hangout.utils.CircularImageView;
+import com.example.ft_hangout.entity.Contacts;
 import com.example.ft_hangout.R;
-import com.example.ft_hangout.ViewModel.ContactsViewModel;
+import com.example.ft_hangout.viewmodel.ContactsViewModel;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 
-import static com.example.ft_hangout.Utils.Base64Contact.decodeBase64;
-import static com.example.ft_hangout.Utils.Base64Contact.encodeToBase64;
+import static com.example.ft_hangout.utils.Base64Contact.decodeBase64;
+import static com.example.ft_hangout.utils.Base64Contact.encodeToBase64;
 
 
 public class ContactAddModifyFragment extends Fragment implements View.OnClickListener {
@@ -87,7 +86,7 @@ public class ContactAddModifyFragment extends Fragment implements View.OnClickLi
 
     public void displayDetails(Contacts contact) {
 
-       if (contact.checkAvatar() == true){
+        if (contact.checkAvatar() == true) {
             _avatar.setImageBitmap(decodeBase64(contact.getAvatar()));
         }
         _fullname.setText(contact.getLastname() + " " + contact.getFirstname());
@@ -111,8 +110,7 @@ public class ContactAddModifyFragment extends Fragment implements View.OnClickLi
             if (_checkAvatar == true) {
                 contact.setAvatar(avatar);
                 contact.setCheckAvatar(true);
-            }
-            else {
+            } else {
                 contact.setCheckAvatar(false);
             }
             contact.setLastname(lastname);
@@ -121,8 +119,7 @@ public class ContactAddModifyFragment extends Fragment implements View.OnClickLi
             contact.setNufix(nufix);
             contact.setMail(mail);
             contact.setAddress(address);
-        }
-        else {
+        } else {
             contact = new Contacts(_checkAvatar, avatar, lastname, firstname, numobile, nufix, mail, address);
         }
     }
@@ -151,8 +148,7 @@ public class ContactAddModifyFragment extends Fragment implements View.OnClickLi
                     if (_updateContact == true) {
                         contactsViewModel.update(contact);
                         Toast.makeText(this.getContext(), "Contact updated !", Toast.LENGTH_LONG).show();
-                    }
-                    else {
+                    } else {
                         contactsViewModel.insert(contact);
                         Toast.makeText(this.getContext(), "New contact saved !", Toast.LENGTH_LONG).show();
                     }
@@ -181,34 +177,33 @@ public class ContactAddModifyFragment extends Fragment implements View.OnClickLi
                 if (extras == null) {
                     Toast.makeText(this.getContext(), "There no data to save !", Toast.LENGTH_LONG).show();
                 } else {
-                   // Toast.makeText(this.getContext(), "DATA can be saved !!!!!!!!!! " + _imagepath, Toast.LENGTH_LONG).show();
+                    // Toast.makeText(this.getContext(), "DATA can be saved !!!!!!!!!! " + _imagepath, Toast.LENGTH_LONG).show();
                     _avatar.setImageBitmap(_bitmap);
                 }
             }
             avatar = encodeToBase64(_bitmap, Bitmap.CompressFormat.JPEG, 100);
             _checkAvatar = true;
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
         }
     }
 
     private void pickImage() {
         if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-           openPickImage();
+            openPickImage();
         } else {
-           requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                     READ_EXTERNAL_STORAGE_REQUEST_CODE);
         }
     }
 
-  @NonNull
-  @Override
+    @NonNull
+    @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == READ_EXTERNAL_STORAGE_REQUEST_CODE) {
             if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // pick image after request permission success
                 openPickImage();
                 Toast.makeText(this.getContext(), "PERMISSION GRANTED !", Toast.LENGTH_LONG).show();
@@ -216,9 +211,9 @@ public class ContactAddModifyFragment extends Fragment implements View.OnClickLi
         }
     }
 
-    public void openPickImage(){
+    public void openPickImage() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setDataAndType(_uriPath,"image/*");
+        intent.setDataAndType(_uriPath, "image/*");
         intent.putExtra("crop", "true");
         intent.putExtra("scale", true);
         intent.putExtra("aspectX", 16);
