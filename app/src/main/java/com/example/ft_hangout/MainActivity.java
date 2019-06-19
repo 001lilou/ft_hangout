@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 2;
     private final int READ_EXTERNAL_STORAGE_REQUEST_CODE = 1001;
 
-    private TelephonyManager mTelephonyManager;
+    private TelephonyManager _telephonyManager;
     private MyPhoneCallListener mListener;
 
     public boolean isPhoneActivated, isSMSActivated;
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         // Create a telephony manager.
-        mTelephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        _telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
         // Check to see if Telephony is enabled.
         if (isTelephonyEnabled()) {
             Log.d(TAG, getString(R.string.telephony_enabled));
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //checkForPhonePermission();
             // Register the PhoneStateListener to monitor phone activity.
             mListener = new MyPhoneCallListener();
-            mTelephonyManager.listen(mListener, PhoneStateListener.LISTEN_CALL_STATE);
+            _telephonyManager.listen(mListener, PhoneStateListener.LISTEN_CALL_STATE);
         } else {
             Toast.makeText(this,
                     R.string.telephony_not_enabled, Toast.LENGTH_LONG).show();
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void checkPermissionsState(){
+    private void checkPermissionsState() {
 
         // CALL PHONE
         if (ActivityCompat.checkSelfPermission(this,
@@ -150,9 +150,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
 
             isSMSActivated = true;
-
         }
-
     }
 
     /**
@@ -161,8 +159,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * @return true if enabled, otherwise false
      */
     private boolean isTelephonyEnabled() {
-        if (mTelephonyManager != null) {
-            if (mTelephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY) {
+        if (_telephonyManager != null) {
+            if (_telephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY) {
                 return true;
             }
         }
@@ -218,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // and send intent.
                 if (smsIntent.resolveActivity(getPackageManager()) != null) {
                     checkForSmsPermission();
-                    if(isSMSActivated)
+                    if (isSMSActivated)
                         startActivity(smsIntent);
                 } else {
                     Log.e(TAG, "Can't resolve app for ACTION_SEND Intent.");
@@ -227,40 +225,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.phone:
                 _contact = _contactsViewModel.getSelectedContact().getValue();
-                /*Intent dialIntent = new Intent(Intent.ACTION_DIAL);
-                dialIntent.setType("vnd.android-dir/mms-sms");
-                if( _contact.getNumobile() != null)
-                {
-                    Toast.makeText(this, "YESSSS", Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    Toast.makeText(this, "Can't resolve app for ACTION_DIAL Intent.", Toast.LENGTH_LONG).show();
-                }
-                dialIntent.putExtra("sms_body","Body of Message");
-                startActivity(dialIntent);*/
-
 
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 // Set the data for the intent as the phone number.
-                callIntent.setData(Uri.parse("tel:"+_contact.getNumobile()));
+                callIntent.setData(Uri.parse("tel:" + _contact.getNumobile()));
                 // If package resolves to an app, check for phone permission,
                 // and send intent.
                 if (callIntent.resolveActivity(getPackageManager()) != null) {
                     checkForPhonePermission();
-                    if(isPhoneActivated)
+                    if (isPhoneActivated)
                         startActivity(callIntent);
                 } else {
                     Log.e(TAG, "Can't resolve app for ACTION_CALL Intent.");
                 }
                 break;
-            default:
-                return;
         }
     }
 
     /**
      * Getters and setters
+     *
      * @return
      */
 
@@ -269,11 +253,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String currentDateTime = dateFormat.format(new Date()); // Find todays date
-
             return currentDateTime;
+
         } catch (Exception e) {
             e.printStackTrace();
-
             return null;
         }
     }
@@ -324,7 +307,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // pick image after request permission success
                     Fragment frag = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-                    ((ContactAddModifyFragment)frag).openPickImage();
+                    ((ContactAddModifyFragment) frag).openPickImage();
                 }
                 break;
         }
@@ -395,8 +378,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
-
-
 
 
     @Override

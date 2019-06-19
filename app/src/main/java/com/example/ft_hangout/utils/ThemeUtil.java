@@ -6,21 +6,21 @@ import android.content.Intent;
 import com.example.ft_hangout.R;
 
 public class ThemeUtil {
-    private static int sTheme;
+    private static int _theme;
 
-    public final static int THEME_CUSTOM_ACTION_BAR_THEME_BLUE = 0;
-    public final static int THEME_CUSTOM_ACTION_BAR_THEME_ORANGE = 1;
-    public final static int THEME_CUSTOM_ACTION_BAR_THEME_TURQUOISE = 3;
+    private final static int THEME_CUSTOM_ACTION_BAR_THEME_BLUE = 0;
+    private final static int THEME_CUSTOM_ACTION_BAR_THEME_ORANGE = 1;
+    private final static int THEME_CUSTOM_ACTION_BAR_THEME_TURQUOISE = 3;
 
     public static void changeToTheme(Activity activity, int theme) {
-        sTheme = theme;
+        _theme = theme;
         activity.finish();
         activity.startActivity(new Intent(activity, activity.getClass()));
         activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     public static void onActivityCreateSetTheme(Activity activity) {
-        switch (sTheme) {
+        switch (_theme) {
             default:
             case THEME_CUSTOM_ACTION_BAR_THEME_BLUE:
                 activity.setTheme(R.style.CustomActionBarTheme);
