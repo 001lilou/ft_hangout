@@ -1,4 +1,4 @@
-package com.example.ft_hangout.fthangoutfragment;
+package com.example.ft_hangout.fragments;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 
+import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -172,9 +174,14 @@ public class ContactAddModifyFragment extends Fragment implements View.OnClickLi
         try {
             Bundle extras = data.getExtras();
             _uriPath = data.getData();
-            _bitmap = (Bitmap) extras.get("data");
+            try{
+                _bitmap = (Bitmap) extras.get("data");
+            }catch(Exception e){
+                _bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), _uriPath);
+            }
+
             if (requestCode == PICK_IMAGE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-                if (extras == null) {
+                if (_bitmap == null) {
                     Toast.makeText(this.getContext(), "There no data to save !", Toast.LENGTH_LONG).show();
                 } else {
                     // Toast.makeText(this.getContext(), "DATA can be saved !!!!!!!!!! " + _imagepath, Toast.LENGTH_LONG).show();
@@ -185,29 +192,16 @@ public class ContactAddModifyFragment extends Fragment implements View.OnClickLi
             _checkAvatar = true;
 
         } catch (Exception e) {
+            Log.e("pickup image", e.getLocalizedMessage());
         }
     }
 
     private void pickImage() {
-        if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             openPickImage();
         } else {
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                     READ_EXTERNAL_STORAGE_REQUEST_CODE);
-        }
-    }
-
-    @NonNull
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == READ_EXTERNAL_STORAGE_REQUEST_CODE) {
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // pick image after request permission success
-                openPickImage();
-                Toast.makeText(this.getContext(), "PERMISSION GRANTED !", Toast.LENGTH_LONG).show();
-            }
         }
     }
 

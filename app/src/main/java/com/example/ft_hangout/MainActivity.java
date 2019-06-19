@@ -20,8 +20,9 @@ import android.widget.Toast;
 
 
 import com.example.ft_hangout.entity.Contacts;
-import com.example.ft_hangout.fthangoutfragment.ContactDetailsFragment;
-import com.example.ft_hangout.fthangoutfragment.ContactsListFragment;
+import com.example.ft_hangout.fragments.ContactAddModifyFragment;
+import com.example.ft_hangout.fragments.ContactDetailsFragment;
+import com.example.ft_hangout.fragments.ContactsListFragment;
 import com.example.ft_hangout.utils.ThemeUtil;
 import com.example.ft_hangout.viewmodel.ContactsViewModel;
 
@@ -30,11 +31,8 @@ import java.util.Date;
 
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
-import android.widget.Button;
 
 import android.net.Uri;
-import android.os.Build;
-import android.widget.EditText;
 
 
 import static com.example.ft_hangout.R.id.fragment_container;
@@ -53,18 +51,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 1;
-    private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 1;
+    private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 2;
+    private final int READ_EXTERNAL_STORAGE_REQUEST_CODE = 1001;
 
     private TelephonyManager mTelephonyManager;
     private MyPhoneCallListener mListener;
 
+    public boolean isPhoneActivated, isSMSActivated;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ThemeUtil.onActivityCreateSetTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        checkForSmsPermission();
+
+        checkPermissionsState();
+
         if (findViewById(fragment_container) != null) {
             if (savedInstanceState != null) {
                 return;
@@ -84,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (isTelephonyEnabled()) {
             Log.d(TAG, getString(R.string.telephony_enabled));
             // Check for phone permission.
-            checkForPhonePermission();
+            //checkForPhonePermission();
             // Register the PhoneStateListener to monitor phone activity.
             mListener = new MyPhoneCallListener();
             mTelephonyManager.listen(mListener, PhoneStateListener.LISTEN_CALL_STATE);
@@ -130,10 +132,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     MY_PERMISSIONS_REQUEST_CALL_PHONE);
         } else {
             // Permission already granted. Enable the call button.
-            enableCallButton();
         }
     }
 
+    private void checkPermissionsState(){
+
+        // CALL PHONE
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+
+            isPhoneActivated = true;
+
+        }
+
+        // SEND SMS
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+
+            isSMSActivated = true;
+
+        }
+
+    }
 
     /**
      * Checks whether Telephony is enabled.
@@ -192,9 +212,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 }
                 smsIntent.putExtra("sms_body", "");
-                startActivity(smsIntent);
 
 
+                // If package resolves to an app, check for phone permission,
+                // and send intent.
+                if (smsIntent.resolveActivity(getPackageManager()) != null) {
+                    checkForSmsPermission();
+                    if(isSMSActivated)
+                        startActivity(smsIntent);
+                } else {
+                    Log.e(TAG, "Can't resolve app for ACTION_SEND Intent.");
+                }
                 //Toast.makeText(this, "Bouton SMS clické !", Toast.LENGTH_LONG).show();
                 break;
             case R.id.phone:
@@ -215,12 +243,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 // Set the data for the intent as the phone number.
-                callIntent.setData(Uri.parse(_contact.getNumobile()));
+                callIntent.setData(Uri.parse("tel:"+_contact.getNumobile()));
                 // If package resolves to an app, check for phone permission,
                 // and send intent.
                 if (callIntent.resolveActivity(getPackageManager()) != null) {
                     checkForPhonePermission();
-                    startActivity(callIntent);
+                    if(isPhoneActivated)
+                        startActivity(callIntent);
                 } else {
                     Log.e(TAG, "Can't resolve app for ACTION_CALL Intent.");
                 }
@@ -229,6 +258,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return;
         }
     }
+
+    /**
+     * Getters and setters
+     * @return
+     */
 
     public static String getCurrentTimeStamp() {
         try {
@@ -244,16 +278,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    public boolean isPhoneActivated() {
+        return isPhoneActivated;
+    }
+
+    public boolean isSMSActivated() {
+        return isSMSActivated;
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
         // For the requestCode, check if permission was granted or not.
         switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_SEND_SMS: {
+            case MY_PERMISSIONS_REQUEST_SEND_SMS:
                 if (permissions[0].equalsIgnoreCase(Manifest.permission.SEND_SMS)
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // Permission was granted. Enable sms button.
-
+                    isSMSActivated = true;
+                    listFragment.getAdapter().notifyDataSetChanged();
                 } else {
                     // Permission denied.
                     Log.d(TAG, getString(R.string.failure_permission));
@@ -261,17 +304,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Toast.LENGTH_LONG).show();
                     // Disable the sms button.
                 }
-            }
+                break;
+            case MY_PERMISSIONS_REQUEST_CALL_PHONE:
+                if (permissions[0].equalsIgnoreCase(Manifest.permission.CALL_PHONE)
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission was granted. Enable sms button.
+                    isPhoneActivated = true;
+                    listFragment.getAdapter().notifyDataSetChanged();
+                } else {
+                    // Permission denied.
+                    Log.d(TAG, getString(R.string.failure_permission));
+                    Toast.makeText(this, getString(R.string.failure_permission),
+                            Toast.LENGTH_LONG).show();
+                    // Disable the sms button.
+                }
+                break;
+            case READ_EXTERNAL_STORAGE_REQUEST_CODE:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // pick image after request permission success
+                    Fragment frag = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                    ((ContactAddModifyFragment)frag).openPickImage();
+                }
+                break;
         }
-    }
-
-
-    /**
-     * Makes the call button (phone_icon) visible so that it can be used.
-     */
-    private void enableCallButton() {
-        ImageButton callButton = (ImageButton) findViewById(R.id.phone);
-        callButton.setVisibility(View.VISIBLE);
     }
 
     @Override

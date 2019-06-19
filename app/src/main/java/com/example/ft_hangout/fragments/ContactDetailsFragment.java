@@ -1,4 +1,4 @@
-package com.example.ft_hangout.fthangoutfragment;
+package com.example.ft_hangout.fragments;
 
 
 import android.graphics.drawable.Drawable;

@@ -40,10 +40,10 @@ public abstract class ContactsDatabase extends RoomDatabase {
 
     };
 
-    private static class PopulateDBAsyncTask extends AsyncTask<Void, Void, Void> {
+    public static class PopulateDBAsyncTask extends AsyncTask<Void, Void, Void> {
         private ContactsDao contactsDao;
 
-        private PopulateDBAsyncTask(ContactsDatabase db) {
+        public PopulateDBAsyncTask(ContactsDatabase db) {
             contactsDao = db.contactsDao();
         }
 
@@ -57,10 +57,12 @@ public abstract class ContactsDatabase extends RoomDatabase {
             contactsDao.insert(new Contacts(false, "", "Martin", "Rémi", "", "", "", ""));
             contactsDao.insert(new Contacts(false, "", "Smith", "laurent", "", "", "", ""));
             contactsDao.insert(new Contacts(false, "", "Golden", "Marie", "", "", "", ""));
-            contactsDao.insert(new Contacts(false, "", "Amaral", "Louis", "", "", "", ""));
+            contactsDao.insert(new Contacts(false, "", "Amaral", "Louis", "0606060606", "0606060606", "", ""));
             contactsDao.insert(new Contacts(false, "", "Durant", "Sylviane", "", "", "", ""));
             contactsDao.insert(new Contacts(false, "", "Chatron", "Isabelle", "", "", "", ""));
             contactsDao.insert(new Contacts(false, "", "Nery", "Fabrice", "", "", "", ""));
+            contactsDao.insert(new Contacts(false, "", "Smith", "James", "", "", "", ""));
+            contactsDao.insert(new Contacts(false, "", "Winston", "Roger", "", "", "", ""));
             return null;
         }
     }

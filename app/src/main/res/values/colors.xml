@@ -33,5 +33,7 @@
     <color name="colorbuttonAdd3">#05DAF5</color>
     <color name="colorbuttonclose3">#9693EC</color>
 
+    <color name="colorGrey">#222222</color>
+
 
 </resources>

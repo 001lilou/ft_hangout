@@ -1,4 +1,4 @@
-package com.example.ft_hangout.fthangoutadapter;
+package com.example.ft_hangout.adapters;
 
 import android.content.Context;
 import android.graphics.PointF;

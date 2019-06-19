@@ -1,4 +1,4 @@
-package com.example.ft_hangout.fthangoutreceiver;
+package com.example.ft_hangout.receivers;
 
 import android.annotation.TargetApi;
 

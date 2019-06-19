@@ -18,8 +18,8 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/logo_42"
+        android:roundIcon="@mipmap/logo_42"
         android:label="ft_hangout"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/CustomActionBarTheme">
         <activity android:name=".MainActivity">
@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <receiver
-            android:name="com.example.ft_hangout.fthangoutreceiver.ContactReceiver"
+            android:name="com.example.ft_hangout.receivers.ContactReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BROADCAST_SMS">

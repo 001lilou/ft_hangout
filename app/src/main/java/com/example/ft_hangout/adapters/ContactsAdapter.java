@@ -1,15 +1,18 @@
-package com.example.ft_hangout.fthangoutadapter;
+package com.example.ft_hangout.adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.example.ft_hangout.MainActivity;
 import com.example.ft_hangout.entity.Contacts;
 import com.example.ft_hangout.R;
 import com.example.ft_hangout.interfaces.OnContactListener;
@@ -32,11 +35,14 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     public OnContactListener listener;
     public int lastIndexContactSelected = -1;
     public int indexContactSelected = -1;
+    public boolean isPhoneActivated, isSMSActivated;
 
-    public ContactsAdapter(Context context, List<Contacts> contactsList, OnContactListener listener) {
+    public ContactsAdapter(Context context, List<Contacts> contactsList, OnContactListener listener, boolean isPhoneActivated, boolean isSMSActivated) {
         this._context = context;
         this._contact = contactsList;
         this.listener = listener;
+        this.isPhoneActivated = isPhoneActivated;
+        this.isSMSActivated = isSMSActivated;
         if (this._contact == null)
             this._contact = new ArrayList<>();
     }
@@ -65,6 +71,21 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         holder.textFulltName.setText(currentContact.getLastname() + " " + currentContact.getFirstname());
         boolean expanded = currentContact.isExpanded();
         holder.item_hide.setVisibility(expanded ? View.VISIBLE : View.GONE);
+
+        // Managing states of button
+        if(((MainActivity)_context).isPhoneActivated()){
+            holder.callButton.getBackground().setTint(_context.getResources().getColor(R.color.colorPrimary));
+        }
+        else{
+            holder.callButton.getBackground().setTint(_context.getResources().getColor(R.color.colorGrey));
+        }
+
+        if(((MainActivity)_context).isSMSActivated()){
+            holder.smsButton.getBackground().setTint(_context.getResources().getColor(R.color.colorPrimary));
+        }
+        else{
+            holder.smsButton.getBackground().setTint(_context.getResources().getColor(R.color.colorGrey));
+        }
     }
 
     @Override
@@ -88,6 +109,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         private LinearLayout item_hide, item_visible;
         private ImageView imageView;
         private TextView textFulltName;
+        private ImageButton callButton, smsButton;
 
         public ContactsHolder(View itemView) {
             super(itemView);
@@ -96,6 +118,8 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
             item_visible = itemView.findViewById(R.id.linearlayout1);
             imageView = itemView.findViewById(R.id.avatar);
             textFulltName = itemView.findViewById(R.id.textViewFullname);
+            callButton = itemView.findViewById(R.id.phone);
+            smsButton = itemView.findViewById(R.id.sms);
 
             item_visible.setOnClickListener(this);
         }

@@ -1,6 +1,7 @@
-package com.example.ft_hangout.fthangoutfragment;
+package com.example.ft_hangout.fragments;
 
 
+import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.NonNull;
@@ -24,9 +25,10 @@ import android.view.View;
 import android.view.ViewGroup;;
 
 
+import com.example.ft_hangout.MainActivity;
 import com.example.ft_hangout.entity.Contacts;
-import com.example.ft_hangout.fthangoutadapter.ContactsAdapter;
-import com.example.ft_hangout.fthangoutadapter.CustomLayoutManager;
+import com.example.ft_hangout.adapters.ContactsAdapter;
+import com.example.ft_hangout.adapters.CustomLayoutManager;
 import com.example.ft_hangout.R;;
 import com.example.ft_hangout.utils.ThemeUtil;
 import com.example.ft_hangout.viewmodel.ContactsViewModel;
@@ -44,6 +46,7 @@ public class ContactsListFragment extends Fragment {
     private ContactsAdapter adapter;
     private List<Contacts> _contacts;
     private FloatingActionButton addContactButton;
+    private Contacts currentSelectedContact;
 
 
     public ContactsListFragment() {
@@ -83,15 +86,15 @@ public class ContactsListFragment extends Fragment {
 
         recyclerView.setLayoutManager(new CustomLayoutManager(this.getActivity()));
         recyclerView.setHasFixedSize(true);
-        adapter = new ContactsAdapter(this.getContext(), _contacts, new OnContactListener() {
+        adapter = new ContactsAdapter(this.getActivity(), _contacts, new OnContactListener() {
             @Override
             public void onContactSelected(Contacts contact) {
                 contactsViewModel.getSelectedContact().setValue(contact);
                 boolean expanded = contact.isExpanded();
                 contact.setExpanded(!expanded);
-
+                currentSelectedContact = contact;
             }
-        });
+        }, ((MainActivity)getActivity()).isPhoneActivated(), ((MainActivity)getActivity()).isSMSActivated());
         recyclerView.setAdapter(adapter);
 
         contactsViewModel = ViewModelProviders.of(getActivity()).get(ContactsViewModel.class);
@@ -147,6 +150,13 @@ public class ContactsListFragment extends Fragment {
 
     }
 
+    /**
+     * Getters and setters
+     */
+    public ContactsAdapter getAdapter() {
+        return adapter;
+    }
+
 
     @Override
     public void onAttach(Context context) {
@@ -155,13 +165,21 @@ public class ContactsListFragment extends Fragment {
 
     @Override
     public void onResume() {
+        adapter.notifyDataSetChanged();
         super.onResume();
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+    }
 
+    @Override
+    public void onPause() {
+        super.onPause();
 
+        // We updated state of the last selected contact before leaving fragment
+        if(currentSelectedContact != null)
+            currentSelectedContact.setExpanded(false);
     }
 }

@@ -22,6 +22,8 @@ public class ContactsRepository {
         contactsDao = database.contactsDao();
         allContacts = contactsDao.getAllContacts();
 
+        //if(allContacts.getValue() == null || allContacts.getValue().size() > 0)
+          //  new ContactsDatabase.PopulateDBAsyncTask(database).execute();
     }
 
     public void insert(Contacts contact) {

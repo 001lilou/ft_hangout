@@ -7,7 +7,7 @@
     android:text="@string/title_contact_details_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ft_hangout.fthangoutfragment.ContactDetailsFragment">
+    tools:context="com.example.ft_hangout.fragments.ContactDetailsFragment">
 
     <RelativeLayout
         android:layout_width="wrap_content"
