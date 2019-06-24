@@ -37,7 +37,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     private int lastIndexContactSelected = -1;
     private int indexContactSelected = -1;
     private boolean isPhoneActivated, isSMSActivated;
-    private int selectedTheme = 0;
+  //  private int selectedTheme = 0;
 
     public ContactsAdapter(Context context, List<Contacts> contactsList, OnContactListener listener, boolean isPhoneActivated, boolean isSMSActivated) {
         this._context = context;
@@ -75,29 +75,14 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         holder.item_hide.setVisibility(expanded ? View.VISIBLE : View.GONE);
 
         // Managing states of button
-        selectedTheme = ThemeUtil.getTheme();
+       // selectedTheme = ThemeUtil.getTheme();
         if (((MainActivity) _context).isPhoneActivated()) {
-            switch (ThemeUtil.getTheme()) {
-                case 0:
-                    holder.callButton.getBackground().setTint(_context.getResources().getColor(R.color.colorPrimary));
-                case 1:
-                    holder.callButton.getBackground().setTint(_context.getResources().getColor(R.color.colorPrimary1));
-                case 2:
-                    holder.callButton.getBackground().setTint(_context.getResources().getColor(R.color.colorPrimary2));
-            }
+            holder.callButton.getBackground().applyTheme(_context.getTheme());
         } else {
             holder.callButton.getBackground().setTint(_context.getResources().getColor(R.color.colorGrey));
         }
-
         if (((MainActivity) _context).isSMSActivated()) {
-            switch (ThemeUtil.getTheme()) {
-                case 0:
-                    holder.smsButton.getBackground().setTint(_context.getResources().getColor(R.color.colorPrimary));
-                case 1:
-                    holder.smsButton.getBackground().setTint(_context.getResources().getColor(R.color.colorPrimary1));
-                case 2:
-                    holder.smsButton.getBackground().setTint(_context.getResources().getColor(R.color.colorPrimary2));
-            }
+            holder.smsButton.getBackground().applyTheme(_context.getTheme());
         } else {
             holder.smsButton.getBackground().setTint(_context.getResources().getColor(R.color.colorGrey));
         }
@@ -142,7 +127,6 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         @Override
         public void onClick(View view) {
             indexContactSelected = getAdapterPosition();
-            Toast.makeText(_context, "" + indexContactSelected, Toast.LENGTH_SHORT).show();
             if (lastIndexContactSelected == indexContactSelected) {
 
                 //set visible item_hide

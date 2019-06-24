@@ -267,7 +267,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     listFragment.getAdapter().notifyDataSetChanged();
                 } else {
                     // Permission denied.
-                    Log.d(TAG, getString(R.string.failure_permission));
                     Toast.makeText(this, getString(R.string.failure_permission),
                             Toast.LENGTH_LONG).show();
                     // Disable the sms button.
@@ -281,7 +280,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     listFragment.getAdapter().notifyDataSetChanged();
                 } else {
                     // Permission denied.
-                    Log.d(TAG, getString(R.string.failure_permission));
                     Toast.makeText(this, getString(R.string.failure_permission),
                             Toast.LENGTH_LONG).show();
                     // Disable the sms button.
@@ -327,13 +325,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     message = message +
                             getString(R.string.ringing) + incomingNumber;
                     Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                    Log.i(TAG, message);
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK:
                     // Phone call is active -- off the hook.
                     message = message + getString(R.string.offhook);
-                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                    Log.i(TAG, message);
+                   // Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
                     returningFromOffHook = true;
                     break;
                 case TelephonyManager.CALL_STATE_IDLE:
@@ -342,18 +338,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     // restart activity when phone call ends.
                     message = message + getString(R.string.idle);
                     Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                    Log.i(TAG, message);
-                    /*if (returningFromOffHook) {
-                        // No need to do anything if >= version KitKat.
-                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-                            Log.i(TAG, getString(R.string.restarting_app));
-                            // Restart the app.
-                            Intent intent = getPackageManager()
-                                    .getLaunchIntentForPackage(getPackageName());
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                        }
-                    }*/
                     break;
                 default:
                     message = message + "Phone off";
