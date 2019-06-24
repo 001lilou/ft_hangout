@@ -8,12 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="navigation_header">@drawable/navigation_header_image_blue</item>
         <item name="colorBackgroundFloating">@color/colorAccent</item>
-
     </style>
 
-
     <style name="ThemeOrange" parent="Theme.AppCompat.Light.DarkActionBar">
-
         <item name="colorPrimary">@color/colorPrimary1</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark1</item>
         <item name="colorAccent">@color/colorAccent1</item>
@@ -22,11 +19,11 @@
     </style>
 
     <style name="ThemeTurquoise" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/colorPrimary3</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark3</item>
-        <item name="colorAccent">@color/colorAccent3</item>
+        <item name="colorPrimary">@color/colorPrimary2</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
+        <item name="colorAccent">@color/colorAccent2</item>
         <item name="navigation_header">@drawable/navigation_header_image</item>
-        <item name="colorBackgroundFloating">@color/colorAccent3</item>
+        <item name="colorBackgroundFloating">@color/colorAccent2</item>
     </style>
 
 
@@ -40,7 +37,7 @@
     </style>
 
     <style name="color_Primary3">
-        <item name="android:background">@color/colorPrimary3</item>
+        <item name="android:background">@color/colorPrimary2</item>
     </style>
 
 
@@ -53,7 +50,7 @@
     </style>
 
     <style name="color_Primary_Dark3">
-        <item name="android:background">@color/colorPrimaryDark3</item>
+        <item name="android:background">@color/colorPrimaryDark2</item>
     </style>
 
     <style name="button_Add_Blue">
@@ -65,7 +62,7 @@
     </style>
 
     <style name="button_Add_Turquoise">
-        <item name="android:background">@color/colorbuttonAdd3</item>
+        <item name="android:background">@color/colorbuttonAdd2</item>
     </style>
 
     <style name="button_checksms_Blue">
@@ -77,7 +74,7 @@
     </style>
 
     <style name="button_checksms_Turquoise">
-        <item name="android:background">@color/colorbuttonclose3</item>
+        <item name="android:background">@color/colorbuttonclose2</item>
     </style>
 
 </resources>

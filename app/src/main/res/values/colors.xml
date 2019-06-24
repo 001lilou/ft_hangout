@@ -18,22 +18,13 @@
     <color name="colorbuttonclose1">#EED922</color>
 
     <!-- Color theme 2 -->
+    <color name="colorPrimary2">#05DAF5</color>
+    <color name="colorPrimaryDark2">#9693EC</color>
+    <color name="colorAccent2">#6827E7</color>
+    <color name="colorbuttonAdd2">#05DAF5</color>
+    <color name="colorbuttonclose2">#9693EC</color>
 
-    <color name="colorPrimary2">#2196F3</color>
-    <color name="colorPrimaryDark2">#3F51B5</color>
-    <color name="colorAccent2">#00BCD4</color>
-    <color name="colorButtonNormal2">#2196F3</color>
-    <color name="colorbuttonclose2">#3F51B5</color>
-
-    <!-- Color theme 3 -->
-
-    <color name="colorPrimary3">#05DAF5</color>
-    <color name="colorPrimaryDark3">#9693EC</color>
-    <color name="colorAccent3">#6827E7</color>
-    <color name="colorbuttonAdd3">#05DAF5</color>
-    <color name="colorbuttonclose3">#9693EC</color>
-
-    <color name="colorGrey">#222222</color>
+    <color name="colorGrey">#DAD7D7</color>
 
 
 </resources>

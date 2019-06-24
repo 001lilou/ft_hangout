@@ -49,20 +49,20 @@ public abstract class ContactsDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            contactsDao.insert(new Contacts(false, "", "Chretien", "Helene", "", "", "", ""));
-            contactsDao.insert(new Contacts(false, "", "Petitcueno", "Sylvain", "", "", "", ""));
-            contactsDao.insert(new Contacts(false, "", "Selvais", "Frederic", "", "", "", ""));
-            contactsDao.insert(new Contacts(false, "", "Gaillard", "Isabelle", "", "", "", ""));
-            contactsDao.insert(new Contacts(false, "", "Gaillard", "Robin", "", "", "", ""));
-            contactsDao.insert(new Contacts(false, "", "Martin", "Rémi", "", "", "", ""));
-            contactsDao.insert(new Contacts(false, "", "Smith", "laurent", "", "", "", ""));
-            contactsDao.insert(new Contacts(false, "", "Golden", "Marie", "", "", "", ""));
-            contactsDao.insert(new Contacts(false, "", "Amaral", "Louis", "0606060606", "0606060606", "", ""));
-            contactsDao.insert(new Contacts(false, "", "Durant", "Sylviane", "", "", "", ""));
-            contactsDao.insert(new Contacts(false, "", "Chatron", "Isabelle", "", "", "", ""));
-            contactsDao.insert(new Contacts(false, "", "Nery", "Fabrice", "", "", "", ""));
-            contactsDao.insert(new Contacts(false, "", "Smith", "James", "", "", "", ""));
-            contactsDao.insert(new Contacts(false, "", "Winston", "Roger", "", "", "", ""));
+            contactsDao.insert(new Contacts(false, "", "Chretien", "Helene", "0661880384", "", "", ""));
+            contactsDao.insert(new Contacts(false, "", "Petitcueno", "Sylvain", "0652414888", "", "", ""));
+            contactsDao.insert(new Contacts(false, "", "Selvais", "Frederic", "0769213642", "", "", ""));
+            contactsDao.insert(new Contacts(false, "", "Gaillard", "Isabelle", "0688281887", "", "", ""));
+            contactsDao.insert(new Contacts(false, "", "Gaillard", "Robin", "0647002803", "", "", ""));
+            contactsDao.insert(new Contacts(false, "", "Martin", "Rémi", "0777777777", "", "", ""));
+            contactsDao.insert(new Contacts(false, "", "Smith", "laurent", "0788888888", "", "", ""));
+            contactsDao.insert(new Contacts(false, "", "Golden", "Marie", "0761850504", "", "", ""));
+            contactsDao.insert(new Contacts(false, "", "Amaral", "Luis", "0630106614", "", "", ""));
+            contactsDao.insert(new Contacts(false, "", "Durant", "Sylviane", "0783486399", "", "", ""));
+            contactsDao.insert(new Contacts(false, "", "Chatron", "Isabelle", "0676972070", "", "", ""));
+            contactsDao.insert(new Contacts(false, "", "Nery", "Fabrice", "0799999999", "", "", ""));
+            contactsDao.insert(new Contacts(false, "", "Smith", "James", "06111111111", "", "", ""));
+            contactsDao.insert(new Contacts(false, "", "Winston", "Roger", "072222222222", "", "", ""));
             return null;
         }
     }

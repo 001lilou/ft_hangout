@@ -167,21 +167,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return false;
     }
 
-    /*public void callNumber(View view) {
-        // Create the intent.
-        Intent callIntent = new Intent(Intent.ACTION_CALL);
-        // Set the data for the intent as the phone number.
-        callIntent.setData(Uri.parse(phoneNumber));
-        // If package resolves to an app, check for phone permission,
-        // and send intent.
-        if (callIntent.resolveActivity(getPackageManager()) != null) {
-            checkForPhonePermission();
-            startActivity(callIntent);
-        } else {
-            Log.e(TAG, "Can't resolve app for ACTION_CALL Intent.");
-        }
-    }*/
-
     @Override
     public void startActivityFromFragment(Fragment fragment, Intent intent, int requestCode, @Nullable Bundle options) {
         super.startActivityFromFragment(fragment, intent, requestCode, options);

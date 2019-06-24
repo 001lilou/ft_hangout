@@ -12,6 +12,7 @@ public class ThemeUtil {
     private final static int THEME_CUSTOM_ACTION_BAR_THEME_ORANGE = 1;
     private final static int THEME_CUSTOM_ACTION_BAR_THEME_TURQUOISE = 3;
 
+
     public static void changeToTheme(Activity activity, int theme) {
         _theme = theme;
         activity.finish();
@@ -31,8 +32,12 @@ public class ThemeUtil {
             case THEME_CUSTOM_ACTION_BAR_THEME_TURQUOISE:
                 activity.setTheme(R.style.ThemeTurquoise);
                 break;
-
         }
     }
+
+    public static int getTheme() {
+        return _theme;
+    }
+
 
 }

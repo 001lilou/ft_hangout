@@ -16,6 +16,7 @@ import com.example.ft_hangout.MainActivity;
 import com.example.ft_hangout.entity.Contacts;
 import com.example.ft_hangout.R;
 import com.example.ft_hangout.interfaces.OnContactListener;
+import com.example.ft_hangout.utils.ThemeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     private int lastIndexContactSelected = -1;
     private int indexContactSelected = -1;
     private boolean isPhoneActivated, isSMSActivated;
+    private int selectedTheme = 0;
 
     public ContactsAdapter(Context context, List<Contacts> contactsList, OnContactListener listener, boolean isPhoneActivated, boolean isSMSActivated) {
         this._context = context;
@@ -73,14 +75,29 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         holder.item_hide.setVisibility(expanded ? View.VISIBLE : View.GONE);
 
         // Managing states of button
+        selectedTheme = ThemeUtil.getTheme();
         if (((MainActivity) _context).isPhoneActivated()) {
-            holder.callButton.getBackground().setTint(_context.getResources().getColor(R.color.colorPrimary));
+            switch (ThemeUtil.getTheme()) {
+                case 0:
+                    holder.callButton.getBackground().setTint(_context.getResources().getColor(R.color.colorPrimary));
+                case 1:
+                    holder.callButton.getBackground().setTint(_context.getResources().getColor(R.color.colorPrimary1));
+                case 2:
+                    holder.callButton.getBackground().setTint(_context.getResources().getColor(R.color.colorPrimary2));
+            }
         } else {
             holder.callButton.getBackground().setTint(_context.getResources().getColor(R.color.colorGrey));
         }
 
         if (((MainActivity) _context).isSMSActivated()) {
-            holder.smsButton.getBackground().setTint(_context.getResources().getColor(R.color.colorPrimary));
+            switch (ThemeUtil.getTheme()) {
+                case 0:
+                    holder.smsButton.getBackground().setTint(_context.getResources().getColor(R.color.colorPrimary));
+                case 1:
+                    holder.smsButton.getBackground().setTint(_context.getResources().getColor(R.color.colorPrimary1));
+                case 2:
+                    holder.smsButton.getBackground().setTint(_context.getResources().getColor(R.color.colorPrimary2));
+            }
         } else {
             holder.smsButton.getBackground().setTint(_context.getResources().getColor(R.color.colorGrey));
         }
@@ -128,59 +145,25 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
             Toast.makeText(_context, "" + indexContactSelected, Toast.LENGTH_SHORT).show();
             if (lastIndexContactSelected == indexContactSelected) {
 
+                //set visible item_hide
                 if (_contact.get(lastIndexContactSelected).isExpanded() == false) {
                     _contact.get(lastIndexContactSelected).setExpanded(false);
                     _contact.get(indexContactSelected).setExpanded(false);
-                    Toast.makeText(_context, "ouverture", Toast.LENGTH_SHORT).show();
                     notifyItemChanged(getAdapterPosition());
-
-                } else {
-                    Toast.makeText(_context, "fermeture index" + indexContactSelected, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(_context, "fermeture last" + lastIndexContactSelected, Toast.LENGTH_SHORT).show();
-
                 }
             } else if (lastIndexContactSelected != -1) {
                 _contact.get(lastIndexContactSelected).setExpanded(false);
-                //notifyDataSetChanged();
             }
-            /**/
             listener.onContactSelected(_contact.get(getAdapterPosition()));
             notifyItemChanged(lastIndexContactSelected);
             lastIndexContactSelected = getAdapterPosition();
             indexContactSelected = -1;
             notifyItemChanged(getAdapterPosition());
-            // notifyItemChanged(lastIndexContactSelected);
         }
-
     }
-
 }
 
 
-/*
-  @Override
-        public void onClick(View view) {
-            indexContactSelected = getAdapterPosition();
-            if (lastIndexContactSelected == indexContactSelected) {
-
-                if (_contact.get(lastIndexContactSelected).isExpanded() == true) {
-                    // _contact.get(lastIndexContactSelected).setExpanded(true);
-                } else {
-                    _contact.get(lastIndexContactSelected).setExpanded(false);
-                    //  notifyItemChanged(lastIndexContactSelected);
-                }
-            } else if (lastIndexContactSelected != -1) {
-                _contact.get(lastIndexContactSelected).setExpanded(false);
-                //notifyDataSetChanged();
-            }
-
-            listener.onContactSelected(_contact.get(getAdapterPosition()));
-                    notifyItemChanged(lastIndexContactSelected);
-                    lastIndexContactSelected = getAdapterPosition();
-                    notifyItemChanged(getAdapterPosition());
-                    // notifyItemChanged(lastIndexContactSelected);
-                    }
- */
 
 
 
