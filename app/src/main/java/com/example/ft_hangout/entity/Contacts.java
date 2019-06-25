@@ -31,6 +31,7 @@ public class Contacts {
     private String _address;
 
     private boolean expanded;
+    private boolean updateContact;
 
 
     public Contacts(Boolean checkAvatar, String avatar, String lastname, String firstname, String numobile, String nufix, String mail, String address) {
@@ -137,6 +138,14 @@ public class Contacts {
 
     public boolean isExpanded() {
         return expanded;
+    }
+
+    public void setUpdateContact(boolean updateContact) {
+        this.updateContact = updateContact;
+    }
+
+    public boolean isUpdateContact() {
+        return updateContact;
     }
 
 }

@@ -326,13 +326,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     // Incoming call is ringing (not used for outgoing call).
                     message = message +
                             getString(R.string.ringing) + incomingNumber;
-                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
                     Log.i(TAG, message);
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK:
                     // Phone call is active -- off the hook.
                     message = message + getString(R.string.offhook);
-                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+              //     Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
                     Log.i(TAG, message);
                     returningFromOffHook = true;
                     break;
@@ -341,7 +341,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     // If running on version older than 19 (KitKat),
                     // restart activity when phone call ends.
                     message = message + getString(R.string.idle);
-                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+               //    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
                     Log.i(TAG, message);
                     /*if (returningFromOffHook) {
                         // No need to do anything if >= version KitKat.
@@ -357,7 +357,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     break;
                 default:
                     message = message + "Phone off";
-                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                //    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
                     Log.i(TAG, message);
                     break;
             }

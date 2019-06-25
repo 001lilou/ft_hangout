@@ -11,7 +11,7 @@ import com.example.ft_hangout.dao.ContactsDao;
 import com.example.ft_hangout.entity.Contacts;
 
 
-@Database(entities = {Contacts.class}, version = 2, exportSchema = false)
+@Database(entities = {Contacts.class}, version = 3, exportSchema = false)
 public abstract class ContactsDatabase extends RoomDatabase {
 
     private static ContactsDatabase instance;

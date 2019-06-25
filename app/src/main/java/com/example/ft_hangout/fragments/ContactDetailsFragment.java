@@ -49,6 +49,8 @@ public class ContactDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
+
+        contactsViewModel = ViewModelProviders.of(getActivity()).get(ContactsViewModel.class);
         View view = inflater.inflate(R.layout.contact_details_fragment, container, false);
 
         _avatar = view.findViewById(R.id.user_profile_photo);
@@ -65,7 +67,7 @@ public class ContactDetailsFragment extends Fragment {
 
     public void displayDetails(Contacts contact) {
         int imageResource;
-        avatar = contact.getAvatar();
+        //avatar = contact.getAvatar();
         if (contact.checkAvatar() == false) {
             avatar = "@drawable/avatar101";
             imageResource = getResources().getIdentifier(avatar, null, "com.example.ft_hangout");
@@ -88,8 +90,10 @@ public class ContactDetailsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         this.getLifecycle();
         contactsViewModel = ViewModelProviders.of(getActivity()).get(ContactsViewModel.class);
-        contact = contactsViewModel.getSelectedContact().getValue();
-        displayDetails(contact);
+        if (contactsViewModel != null) {
+            contact = contactsViewModel.getSelectedContact().getValue();
+            displayDetails(contact);
+        }
     }
 
     @Override
