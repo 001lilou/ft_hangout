@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Contacts _contact;
     private String dateTime;
     private static final String DATETIME = "dateTime";
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
     private static final String CHANNEL_ID = "FT_HANGOUT_CHANNEL";
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TelephonyManager _telephonyManager;
     private MyPhoneCallListener mListener;
 
-    public boolean isPhoneActivated, isSMSActivated;
+    private boolean isPhoneActivated;
+    private boolean isSMSActivated;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,9 +161,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private boolean isTelephonyEnabled() {
         if (_telephonyManager != null) {
-            if (_telephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY) {
-                return true;
-            }
+            return _telephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY;
         }
         return false;
     }
@@ -233,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * @return
      */
 
-    public static String getCurrentTimeStamp() {
+    private static String getCurrentTimeStamp() {
         try {
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
