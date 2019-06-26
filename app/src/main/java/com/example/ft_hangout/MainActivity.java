@@ -26,6 +26,7 @@ import com.example.ft_hangout.fragments.ContactsListFragment;
 import com.example.ft_hangout.utils.ThemeUtil;
 import com.example.ft_hangout.viewmodel.ContactsViewModel;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -47,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String dateTime;
     private static final String DATETIME = "dateTime";
     SharedPreferences sharedPreferences;
-    private static final String CHANNEL_ID = "FT_HANGOUT_CHANNEL";
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 1;
@@ -130,8 +130,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.CALL_PHONE},
                     MY_PERMISSIONS_REQUEST_CALL_PHONE);
-        } else {
-            // Permission already granted. Enable the call button.
         }
     }
 
@@ -192,11 +190,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     smsIntent.putExtra("address", "");
                     // sendSMS("","");
-
                 }
                 smsIntent.putExtra("sms_body", "");
-
-
                 // If package resolves to an app, check for phone permission,
                 // and send intent.
                 if (smsIntent.resolveActivity(getPackageManager()) != null) {
@@ -227,16 +222,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    /**
-     * Getters and setters
-     *
-     * @return
-     */
 
     public static String getCurrentTimeStamp() {
         try {
-
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            DateFormat dateFormat = SimpleDateFormat.getDateTimeInstance();
             String currentDateTime = dateFormat.format(new Date()); // Find todays date
             return currentDateTime;
 
@@ -267,7 +256,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     listFragment.getAdapter().notifyDataSetChanged();
                 } else {
                     // Permission denied.
-                    Log.d(TAG, getString(R.string.failure_permission));
                     Toast.makeText(this, getString(R.string.failure_permission),
                             Toast.LENGTH_LONG).show();
                     // Disable the sms button.
@@ -281,7 +269,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     listFragment.getAdapter().notifyDataSetChanged();
                 } else {
                     // Permission denied.
-                    Log.d(TAG, getString(R.string.failure_permission));
                     Toast.makeText(this, getString(R.string.failure_permission),
                             Toast.LENGTH_LONG).show();
                     // Disable the sms button.
@@ -309,7 +296,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
     /**
      * Monitors and logs phone call activities, and shows the phone state
      * in a toast message.
@@ -319,51 +305,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public void onCallStateChanged(int state, String incomingNumber) {
-            // Define a string for the message to use in a toast.
             String message = getString(R.string.phone_status);
-            switch (state) {
-                case TelephonyManager.CALL_STATE_RINGING:
-                    // Incoming call is ringing (not used for outgoing call).
-                    message = message +
-                            getString(R.string.ringing) + incomingNumber;
-                   // Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                    Log.i(TAG, message);
-                    break;
-                case TelephonyManager.CALL_STATE_OFFHOOK:
-                    // Phone call is active -- off the hook.
-                    message = message + getString(R.string.offhook);
-              //     Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                    Log.i(TAG, message);
-                    returningFromOffHook = true;
-                    break;
-                case TelephonyManager.CALL_STATE_IDLE:
-                    // Phone is idle before and after phone call.
-                    // If running on version older than 19 (KitKat),
-                    // restart activity when phone call ends.
-                    message = message + getString(R.string.idle);
-               //    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                    Log.i(TAG, message);
-                    /*if (returningFromOffHook) {
-                        // No need to do anything if >= version KitKat.
-                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-                            Log.i(TAG, getString(R.string.restarting_app));
-                            // Restart the app.
-                            Intent intent = getPackageManager()
-                                    .getLaunchIntentForPackage(getPackageName());
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                        }
-                    }*/
-                    break;
-                default:
-                    message = message + "Phone off";
-                //    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                    Log.i(TAG, message);
-                    break;
+            if (state == TelephonyManager.CALL_STATE_RINGING) {
+                message = message + getString(R.string.ringing) + incomingNumber;
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
             }
         }
     }
-
 
     @Override
     public void onStart() {

@@ -12,6 +12,8 @@ import android.telephony.*;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 public class ContactReceiver extends BroadcastReceiver {
 
     private static final String TAG = ContactReceiver.class.getSimpleName();
@@ -23,7 +25,7 @@ public class ContactReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         // Get the SMS message.
-        if (intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")) {
+        if (Objects.equals(intent.getAction(), "android.provider.Telephony.SMS_RECEIVED")) {
             Bundle bundle = intent.getExtras();
             SmsMessage[] msgs;
             String strMessage = "";
@@ -53,28 +55,10 @@ public class ContactReceiver extends BroadcastReceiver {
                         strMessage += "SMS from " + msgs[i].getOriginatingAddress();
                         strMessage += " :" + msgs[i].getMessageBody() + "\n";
 
-
-                        // Log and display the SMS message.
-                        Log.d(TAG, "onReceive: " + strMessage);
+                        // Display the SMS message.
                         Toast.makeText(context, strMessage, Toast.LENGTH_LONG).show();
                     }
                 }
-
-           /* intent = new Intent(this, ContactReceiver.class);
-                intent.setAction(ACTION_SNOOZE);
-                intent.putExtra(EXTRA_NOTIFICATION_ID, 0);
-                PendingIntent snoozePendingIntent =
-                        PendingIntent.getBroadcast(this, 0, intent, 0);
-
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                        .setSmallIcon(R.drawable.ic_sms_not)
-                        .setContentTitle("My notification")
-                        .setContentText("Hello World!")
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                        .setContentIntent(pendingIntent)
-                        .addAction(R.drawable.ic_snooze, getString(R.string.snooze),
-                                snoozePendingIntent);*/
-
 
             }
         }
