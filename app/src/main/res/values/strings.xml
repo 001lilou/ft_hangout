@@ -53,9 +53,9 @@
     <string name="permission_not_granted" translatable="false">permission_not_granted</string>
     <string name="failure_permission" translatable="false">failure_permission</string>
 
-    <string name="action_theme_1">Thème bleu</string>
-    <string name="action_theme_2">Thème vitaminé</string>
-    <string name="action_theme_3">Thème Turquoise</string>
+    <string name="action_theme_1">Blue theme</string>
+    <string name="action_theme_2">Vitamin theme</string>
+    <string name="action_theme_3">Turquoise Theme</string>
 
 
     <string name="show" translatable="false">Show</string>

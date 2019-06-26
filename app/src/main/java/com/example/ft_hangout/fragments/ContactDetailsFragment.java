@@ -69,7 +69,7 @@ public class ContactDetailsFragment extends Fragment {
         int imageResource;
         //avatar = contact.getAvatar();
         if (contact.checkAvatar() == false) {
-            avatar = "@drawable/avatar101";
+            avatar = "@drawable/logo_42";
             imageResource = getResources().getIdentifier(avatar, null, "com.example.ft_hangout");
             Drawable res = ContextCompat.getDrawable(getContext(), imageResource);
             _avatar.setImageDrawable(res);
