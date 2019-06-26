@@ -23,6 +23,8 @@ import com.example.ft_hangout.entity.Contacts;
 import com.example.ft_hangout.R;
 import com.example.ft_hangout.viewmodel.ContactsViewModel;
 
+import java.util.Locale;
+
 import static com.example.ft_hangout.utils.Base64Contact.decodeBase64;
 
 
@@ -114,7 +116,13 @@ public class ContactDetailsFragment extends Fragment {
 
             case R.id.action_delete:
                 contactsViewModel.delete(contact);
-                Toast.makeText(this.getContext(), "Contact Supprimé !!!!", Toast.LENGTH_LONG).show();
+                if (Locale.getDefault().getLanguage().contentEquals("fr")) {
+                    Toast.makeText(this.getContext(), "Contact supprimé !!!!", Toast.LENGTH_LONG).show();
+                }
+                else if (Locale.getDefault().getLanguage().contentEquals("en")) {
+                    Toast.makeText(this.getContext(), "Contact deleted!", Toast.LENGTH_LONG).show();
+                }
+
                 getActivity().onBackPressed();
                 return true;
 

@@ -29,6 +29,7 @@ import com.example.ft_hangout.viewmodel.ContactsViewModel;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -84,16 +85,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         _telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
         // Check to see if Telephony is enabled.
         if (isTelephonyEnabled()) {
-            Log.d(TAG, getString(R.string.telephony_enabled));
             // Check for phone permission.
             //checkForPhonePermission();
             // Register the PhoneStateListener to monitor phone activity.
             mListener = new MyPhoneCallListener();
             _telephonyManager.listen(mListener, PhoneStateListener.LISTEN_CALL_STATE);
         } else {
-            Toast.makeText(this,
-                    R.string.telephony_not_enabled, Toast.LENGTH_LONG).show();
-            Log.d(TAG, getString(R.string.telephony_not_enabled));
+            if (Locale.getDefault().getLanguage().contentEquals("fr")) {
+                Toast.makeText(this,  "La téléphonie n'est pas activée", Toast.LENGTH_LONG).show();
+            }
+            else if (Locale.getDefault().getLanguage().contentEquals("en")) {
+                Toast.makeText(this,
+                        R.string.telephony_not_enabled, Toast.LENGTH_LONG).show();
+            }
             // Disable the call button.
             //disableCallButton();
         }
@@ -201,7 +205,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     Log.e(TAG, "Can't resolve app for ACTION_SEND Intent.");
                 }
-                //Toast.makeText(this, "Bouton SMS clické !", Toast.LENGTH_LONG).show();
                 break;
             case R.id.phone:
                 _contact = _contactsViewModel.getSelectedContact().getValue();
@@ -256,8 +259,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     listFragment.getAdapter().notifyDataSetChanged();
                 } else {
                     // Permission denied.
-                    Toast.makeText(this, getString(R.string.failure_permission),
-                            Toast.LENGTH_LONG).show();
+                    if (Locale.getDefault().getLanguage().contentEquals("fr")) {
+                        Toast.makeText(this, "Permission Refusée",
+                                Toast.LENGTH_LONG).show();
+                    }
+                    else if (Locale.getDefault().getLanguage().contentEquals("en")) {
+                        Toast.makeText(this, getString(R.string.failure_permission),
+                                Toast.LENGTH_LONG).show();
+                    }
+
                     // Disable the sms button.
                 }
                 break;
@@ -269,8 +279,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     listFragment.getAdapter().notifyDataSetChanged();
                 } else {
                     // Permission denied.
-                    Toast.makeText(this, getString(R.string.failure_permission),
-                            Toast.LENGTH_LONG).show();
+                    if (Locale.getDefault().getLanguage().contentEquals("fr")) {
+                        Toast.makeText(this, "Permission Refusée",
+                                Toast.LENGTH_LONG).show();
+                    }
+                    else if (Locale.getDefault().getLanguage().contentEquals("en")) {
+                        Toast.makeText(this, getString(R.string.failure_permission),
+                                Toast.LENGTH_LONG).show();
+                    }
                     // Disable the sms button.
                 }
                 break;

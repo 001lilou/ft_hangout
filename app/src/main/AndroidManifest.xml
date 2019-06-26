@@ -19,7 +19,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/logo_42"
         android:roundIcon="@mipmap/logo_42"
-        android:label="ft_hangout"
+        android:label="Contactst42"
         android:supportsRtl="true"
         android:theme="@style/CustomActionBarTheme">
         <activity android:name=".MainActivity">
