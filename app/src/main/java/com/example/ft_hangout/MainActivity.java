@@ -297,7 +297,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     * Monitors and logs phone call activities, and shows the phone state
+     * Monitors phone call activities, and shows the phone state
      * in a toast message.
      */
     private class MyPhoneCallListener extends PhoneStateListener {
