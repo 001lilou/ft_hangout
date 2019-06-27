@@ -203,7 +203,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (isSMSActivated)
                         startActivity(smsIntent);
                 } else {
-                    Log.e(TAG, "Can't resolve app for ACTION_SEND Intent.");
+                    if (Locale.getDefault().getLanguage().contentEquals("fr")) {
+                        Toast.makeText(this, "ACTION_SEND Intent ne peux pas être résolue",
+                                Toast.LENGTH_LONG).show();
+                    }
+                    else if (Locale.getDefault().getLanguage().contentEquals("en")) {
+                        Toast.makeText(this, "Can't resolve app for ACTION_SEND Intent.",
+                                Toast.LENGTH_LONG).show();
+                    }
                 }
                 break;
             case R.id.phone:
@@ -219,7 +226,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (isPhoneActivated)
                         startActivity(callIntent);
                 } else {
-                    Log.e(TAG, "Can't resolve app for ACTION_CALL Intent.");
+                    if (Locale.getDefault().getLanguage().contentEquals("fr")) {
+                        Toast.makeText(this, "ACTION_CALL Intent ne peux pas être résolue",
+                                Toast.LENGTH_LONG).show();
+                    }
+                    else if (Locale.getDefault().getLanguage().contentEquals("en")) {
+                        Toast.makeText(this, "Can't resolve app for ACTION_CALL Intent.",
+                                Toast.LENGTH_LONG).show();
+                    }
                 }
                 break;
         }
