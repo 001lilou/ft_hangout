@@ -90,16 +90,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // Register the PhoneStateListener to monitor phone activity.
             mListener = new MyPhoneCallListener();
             _telephonyManager.listen(mListener, PhoneStateListener.LISTEN_CALL_STATE);
-        } else {
-            if (Locale.getDefault().getLanguage().contentEquals("fr")) {
-                Toast.makeText(this,  "La téléphonie n'est pas activée", Toast.LENGTH_LONG).show();
-            }
-            else if (Locale.getDefault().getLanguage().contentEquals("en")) {
-                Toast.makeText(this,
-                        R.string.telephony_not_enabled, Toast.LENGTH_LONG).show();
-            }
-            // Disable the call button.
-            //disableCallButton();
         }
     }
 
