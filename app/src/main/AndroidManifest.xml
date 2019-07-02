@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <receiver
-            android:name="com.example.ft_hangout.receivers.ContactReceiver"
+            android:name="com.example.ft_hangout.receiver.ContactReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BROADCAST_SMS">

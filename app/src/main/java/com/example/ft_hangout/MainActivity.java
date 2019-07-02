@@ -13,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -21,10 +20,10 @@ import android.widget.Toast;
 
 
 import com.example.ft_hangout.entity.Contacts;
-import com.example.ft_hangout.fragments.ContactAddModifyFragment;
-import com.example.ft_hangout.fragments.ContactDetailsFragment;
-import com.example.ft_hangout.fragments.ContactsListFragment;
-import com.example.ft_hangout.utils.ThemeUtil;
+import com.example.ft_hangout.fragment.ContactAddModifyFragment;
+import com.example.ft_hangout.fragment.ContactDetailsFragment;
+import com.example.ft_hangout.fragment.ContactsListFragment;
+import com.example.ft_hangout.util.ThemeUtil;
 import com.example.ft_hangout.viewmodel.ContactsViewModel;
 
 import java.text.DateFormat;

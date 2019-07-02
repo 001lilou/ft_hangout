@@ -18,7 +18,7 @@
         android:id="@+id/linearlayout1"
         android:layout_marginTop="2dp">
 
-        <com.example.ft_hangout.utils.CircularImageView
+        <com.example.ft_hangout.util.CircularImageView
             android:id="@+id/avatar"
             android:layout_width="60dp"
             android:layout_height="49dp"
@@ -41,7 +41,7 @@
             android:text="@string/fullname_detail"
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textSize="20dp"
+            android:textSize="20sp"
             app:layout_column="1"
             tools:ignore="RtlCompat" />
 

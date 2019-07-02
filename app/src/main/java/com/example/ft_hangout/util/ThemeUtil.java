@@ -1,4 +1,4 @@
-package com.example.ft_hangout.utils;
+package com.example.ft_hangout.util;
 
 import android.app.Activity;
 import android.content.Intent;

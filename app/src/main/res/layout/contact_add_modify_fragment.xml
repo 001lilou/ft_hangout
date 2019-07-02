@@ -6,7 +6,7 @@
     android:text="@string/title_contact_details_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ft_hangout.fragments.ContactAddModifyFragment">
+    tools:context="com.example.ft_hangout.fragment.ContactAddModifyFragment">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -25,7 +25,7 @@
             android:scaleType="centerCrop"
             android:src="?attr/navigation_header" />
 
-        <com.example.ft_hangout.utils.CircularImageView
+        <com.example.ft_hangout.util.CircularImageView
             android:id="@+id/image_Button_add"
             android:clickable="true"
             android:layout_width="120dp"
@@ -70,10 +70,10 @@
                 android:layout_alignTop="@+id/save"
                 android:layout_marginStart="300dp"
                 android:layout_marginTop="-2dp"
-                android:contentDescription="@string/cancel"
                 android:onClick="onClick"
                 android:src="@drawable/ic_cancel"
-                app:backgroundTint="?attr/colorPrimary" />
+                app:backgroundTint="?attr/colorPrimary"
+                android:contentDescription="@string/cancel"/>
 
 
             <TextView

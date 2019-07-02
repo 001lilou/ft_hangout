@@ -1,4 +1,4 @@
-package com.example.ft_hangout.adapters;
+package com.example.ft_hangout.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -15,7 +15,6 @@ import com.example.ft_hangout.MainActivity;
 import com.example.ft_hangout.entity.Contacts;
 import com.example.ft_hangout.R;
 import com.example.ft_hangout.interfaces.OnContactListener;
-import com.example.ft_hangout.utils.ThemeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 
-import static com.example.ft_hangout.utils.Base64Contact.decodeBase64;
+import static com.example.ft_hangout.util.Base64Contact.decodeBase64;
 
 
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ContactsHolder> {
