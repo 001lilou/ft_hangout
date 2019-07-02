@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 
 import android.content.Context;
@@ -22,14 +23,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;;
+import android.view.ViewGroup;
 
 
 import com.example.ft_hangout.MainActivity;
 import com.example.ft_hangout.entity.Contacts;
 import com.example.ft_hangout.adapters.ContactsAdapter;
 import com.example.ft_hangout.adapters.CustomLayoutManager;
-import com.example.ft_hangout.R;;
+import com.example.ft_hangout.R;
 import com.example.ft_hangout.utils.ThemeUtil;
 import com.example.ft_hangout.viewmodel.ContactsViewModel;
 import com.example.ft_hangout.interfaces.OnContactListener;
@@ -57,17 +58,15 @@ public class ContactsListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         View view = inflater.inflate(R.layout.contact_list_fragment, container, false);
         recyclerView = view.findViewById(R.id.recycler_view);
         addContactButton = view.findViewById(R.id.button_add_contact);
-        addContactButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                contactsViewModel.getSelectedContact().setValue(null);
-                fragmentTransaction = getFragmentManager().beginTransaction().replace(R.id.fragment_container, new ContactAddModifyFragment());
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
+        addContactButton.setOnClickListener(v -> {
+            contactsViewModel.getSelectedContact().setValue(null);
+            fragmentTransaction = getFragmentManager().beginTransaction().replace(R.id.fragment_container, new ContactAddModifyFragment());
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         });
         if (adapter != null && _contacts != null) {
             adapter.setContacts(_contacts);
@@ -86,24 +85,18 @@ public class ContactsListFragment extends Fragment {
 
         recyclerView.setLayoutManager(new CustomLayoutManager(this.getActivity()));
         recyclerView.setHasFixedSize(true);
-        adapter = new ContactsAdapter(this.getActivity(), _contacts, new OnContactListener() {
-            @Override
-            public void onContactSelected(Contacts contact) {
-                contactsViewModel.getSelectedContact().setValue(contact);
-                boolean expanded = contact.isExpanded();
-                contact.setExpanded(!expanded);
-                currentSelectedContact = contact;
-            }
+        adapter = new ContactsAdapter(this.getActivity(), _contacts, contact -> {
+            contactsViewModel.getSelectedContact().setValue(contact);
+            boolean expanded = contact.isExpanded();
+            contact.setExpanded(!expanded);
+            currentSelectedContact = contact;
         }, ((MainActivity)getActivity()).isPhoneActivated(), ((MainActivity)getActivity()).isSMSActivated());
         recyclerView.setAdapter(adapter);
 
         contactsViewModel = ViewModelProviders.of(getActivity()).get(ContactsViewModel.class);
-        contactsViewModel.getAllContacts().observe(this, new Observer<List<Contacts>>() {
-            @Override
-            public void onChanged(@Nullable List<Contacts> contacts) {
-                _contacts = contacts;
-                adapter.setContacts(contacts);
-            }
+        contactsViewModel.getAllContacts().observe(this, contacts -> {
+            _contacts = contacts;
+            adapter.setContacts(contacts);
         });
 
     }

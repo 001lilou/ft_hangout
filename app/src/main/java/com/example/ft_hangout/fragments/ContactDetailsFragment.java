@@ -5,6 +5,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -51,10 +53,9 @@ public class ContactDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         contactsViewModel = ViewModelProviders.of(getActivity()).get(ContactsViewModel.class);
         View view = inflater.inflate(R.layout.contact_details_fragment, container, false);
-
         _avatar = view.findViewById(R.id.user_profile_photo);
         _fullname = view.findViewById(R.id.user_profile_name);
         _lastname = view.findViewById(R.id.lastname_Detail);
@@ -66,6 +67,7 @@ public class ContactDetailsFragment extends Fragment {
 
         return view;
     }
+
 
     public void displayDetails(Contacts contact) {
         int imageResource;
@@ -128,6 +130,10 @@ public class ContactDetailsFragment extends Fragment {
 
             case R.id.action_exit_details:
                 getActivity().finish();
+                return true;
+
+            case android.R.id.home:
+                getActivity().onBackPressed();
                 return true;
 
             default:

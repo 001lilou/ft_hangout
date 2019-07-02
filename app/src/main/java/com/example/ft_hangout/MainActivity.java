@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -35,6 +36,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
 import android.net.Uri;
+
 
 
 import static com.example.ft_hangout.R.id.fragment_container;
@@ -63,9 +65,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ThemeUtil.onActivityCreateSetTheme(this);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         checkPermissionsState();
 
         if (findViewById(fragment_container) != null) {

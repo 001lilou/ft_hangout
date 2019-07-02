@@ -17,4 +17,6 @@
         android:title="@string/action_exit_details"
         app:showAsAction="never" />
 
+
+
 </menu>
